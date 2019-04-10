@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
-    private static int minBlockSize = 35;
+    private static int minBlockSize = 25;
 
     [RangeAttribute(1,5)]
     public int blockNum = 1;

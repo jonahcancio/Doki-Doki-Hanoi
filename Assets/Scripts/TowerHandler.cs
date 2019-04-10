@@ -9,6 +9,9 @@ public class TowerHandler : MonoBehaviour {
     public int towerHeight;
     public Transform topBlock;
 
+    private Camera mainCamera;
+    private Canvas mainCanvas;
+
     void Start () {
         this.towerHeight = 0;
         this.topBlock = null;
@@ -20,6 +23,8 @@ public class TowerHandler : MonoBehaviour {
                 break;
             }
         }
+        this.mainCamera = Camera.main;
+        this.mainCanvas = this.transform.parent.GetComponent<Canvas>().rootCanvas;
     }
 
     Transform GetAvailableSlot () {
@@ -52,7 +57,8 @@ public class TowerHandler : MonoBehaviour {
 
     public void MoveTopBlockToMouse (Vector2 mousePosition) {
         if (this.topBlock) {
-            this.topBlock.position = mousePosition;
+            Vector2 worldPosition = this.mainCamera.ScreenToWorldPoint(mousePosition);
+            this.topBlock.position = new Vector3(worldPosition.x, worldPosition.y, mainCanvas.planeDistance);
         }
     }
 
