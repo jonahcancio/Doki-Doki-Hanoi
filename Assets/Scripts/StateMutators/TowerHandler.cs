@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class TowerHandler : MonoBehaviour {
 
+    
     static private int maxTowerHeight = 5;
 
+    [HideInInspector]
     public int towerHeight;
+    [HideInInspector]
     public Transform topBlock;
+
+    public bool isInitialTower;
+    public bool isGoalTower;
 
     private Camera mainCamera;
     private Canvas mainCanvas;
