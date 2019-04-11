@@ -3,6 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MouseHoverListener : MonoBehaviour {
+public class MouseHoverTrigger : MonoBehaviour {
 
 }

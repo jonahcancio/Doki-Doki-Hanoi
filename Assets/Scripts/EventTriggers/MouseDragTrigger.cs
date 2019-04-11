@@ -5,29 +5,29 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-[RequireComponent (typeof (TowerHandler))]
-public class MouseDragListener : MonoBehaviour,
+public class MouseDragTrigger : MonoBehaviour,
     IPointerDownHandler, IDragHandler, IDropHandler, IEndDragHandler, IPointerUpHandler {
 
         public static Transform towerBeingDragged;
 
         private Image image;
         private Color originalColor;
-        public Color selectedColor = new Color(1f, 2f, 0f, 0.5f);
+        public Color selectedColor = new Color (1f, 2f, 0f, 0.5f);
 
-        private TowerHandler towerHandler;
+        private TowerLogic towerLogic;
 
         public void Start () {
             this.image = this.GetComponent<Image> ();
             this.originalColor = this.image.color;
 
-            this.towerHandler = this.GetComponent<TowerHandler> ();
             towerBeingDragged = null;
+
+            this.towerLogic = this.GetComponent<TowerLogic> ();
         }
 
         public void OnPointerDown (PointerEventData eventData) {
             if (eventData.button == 0) {
-                towerHandler.MoveTopBlockToMouse (eventData.position);
+                this.towerLogic.EmitLeftMouseDragEvent (eventData.position);
 
                 towerBeingDragged = this.transform;
                 this.image.color = this.selectedColor;
@@ -36,13 +36,13 @@ public class MouseDragListener : MonoBehaviour,
 
         public void OnDrag (PointerEventData eventData) {
             if (eventData.button == 0) {
-                towerHandler.MoveTopBlockToMouse (eventData.position);
+                this.towerLogic.EmitLeftMouseDragEvent (eventData.position);
             }
         }
 
         public void OnPointerUp (PointerEventData eventData) {
             if (eventData.button == 0) {
-                this.towerHandler.ResetTopBlockPosition ();
+                this.towerLogic.EmitLeftMouseReleaseEvent();
 
                 this.image.color = this.originalColor;
             }
@@ -50,20 +50,16 @@ public class MouseDragListener : MonoBehaviour,
 
         public void OnDrop (PointerEventData eventData) {
             if (eventData.button == 0) {
-                if (towerBeingDragged && towerBeingDragged != this.transform) {                    
-                    towerHandler.AttemptTopBlockTheftFromDraggedTower ();
-                }
+                this.towerLogic.AttemptBlockTransferFrom(towerBeingDragged);
             }
         }
 
         public void OnEndDrag (PointerEventData eventData) {
             if (eventData.button == 0) {
-                this.towerHandler.ResetTopBlockPosition ();
+                this.towerLogic.EmitLeftMouseReleaseEvent();
 
                 towerBeingDragged = null;
-                this.image.color = this.originalColor;                
+                this.image.color = this.originalColor;
             }
         }
-
-
     }
