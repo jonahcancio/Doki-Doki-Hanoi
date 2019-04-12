@@ -14,7 +14,7 @@ public class MouseDragTrigger : MonoBehaviour,
         private Color originalColor;
         public Color selectedColor = new Color (1f, 2f, 0f, 0.5f);
 
-        private TowerLogic towerLogic;
+        private EventBus eventBus;
 
         public void Start () {
             this.image = this.GetComponent<Image> ();
@@ -22,12 +22,12 @@ public class MouseDragTrigger : MonoBehaviour,
 
             towerBeingDragged = null;
 
-            this.towerLogic = this.GetComponent<TowerLogic> ();
+            this.eventBus = this.GetComponent<EventBus> ();
         }
 
         public void OnPointerDown (PointerEventData eventData) {
             if (eventData.button == 0) {
-                this.towerLogic.EmitLeftMouseDragEvent (eventData.position);
+                this.eventBus.EmitLeftMouseDragEvent (eventData.position);
 
                 towerBeingDragged = this.transform;
                 this.image.color = this.selectedColor;
@@ -36,13 +36,13 @@ public class MouseDragTrigger : MonoBehaviour,
 
         public void OnDrag (PointerEventData eventData) {
             if (eventData.button == 0) {
-                this.towerLogic.EmitLeftMouseDragEvent (eventData.position);
+                this.eventBus.EmitLeftMouseDragEvent (eventData.position);
             }
         }
 
         public void OnPointerUp (PointerEventData eventData) {
             if (eventData.button == 0) {
-                this.towerLogic.EmitLeftMouseReleaseEvent();
+                this.eventBus.EmitLeftMouseReleaseEvent();
 
                 this.image.color = this.originalColor;
             }
@@ -50,13 +50,15 @@ public class MouseDragTrigger : MonoBehaviour,
 
         public void OnDrop (PointerEventData eventData) {
             if (eventData.button == 0) {
-                this.towerLogic.AttemptBlockTransferFrom(towerBeingDragged);
+                if (towerBeingDragged) {
+                    this.eventBus.EmitTowerDropEvent(towerBeingDragged);
+                }
             }
         }
 
         public void OnEndDrag (PointerEventData eventData) {
             if (eventData.button == 0) {
-                this.towerLogic.EmitLeftMouseReleaseEvent();
+                this.eventBus.EmitLeftMouseReleaseEvent();
 
                 towerBeingDragged = null;
                 this.image.color = this.originalColor;

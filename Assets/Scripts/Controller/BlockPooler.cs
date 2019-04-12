@@ -13,7 +13,6 @@ public class BlockPooler : MonoBehaviour {
 
     private static Stack<GameObject> pooledBlocks;
 
-
     void OnEnable () {
         // instantiate block slots
         this.hanoiZone = GameObject.FindWithTag ("GameArea").transform;
@@ -51,8 +50,8 @@ public class BlockPooler : MonoBehaviour {
     Transform GetTowerToChop () {
         Transform maxTower = this.hanoiZone.GetChild (0);
         foreach (Transform tower in this.hanoiZone) {
-            int maxBlockNum = maxTower.GetComponent<TowerLogic> ().GetBottomBlockNum ();
-            int blockNum = tower.GetComponent<TowerLogic> ().GetBottomBlockNum ();
+            int maxBlockNum = maxTower.GetComponent<TowerStack> ().GetBottomBlockNum ();
+            int blockNum = tower.GetComponent<TowerStack> ().GetBottomBlockNum ();
             if (blockNum > maxBlockNum) {
                 maxTower = tower;
             }
@@ -62,19 +61,20 @@ public class BlockPooler : MonoBehaviour {
 
     public void ChopTower () {
         if (pooledBlocks.Count >= maxTowerHeight) {
-            Debug.Log ("Nothing to chop, block pool is full");
-        } else {
-            // locate block from chop tower
-            Transform towerToChop = GetTowerToChop ();
-            // use tower logic to chop tower
-            Transform block = towerToChop.GetComponent<TowerLogic> ().ChopTower ();
-            if (block != null) {
-                // push block back to stack
-                block.SetParent (this.transform);
-                block.gameObject.SetActive (false);
-                pooledBlocks.Push (block.gameObject);
-            }
+            Debug.Log ("Block pool is full! What are you trying to chop");
         }
+        // locate the tower that must be chopped
+        Transform towerToChop = GetTowerToChop ();
+
+        // acquire the bottom bottom block from tower
+        Transform block = towerToChop.GetComponent<TowerStack> ().ChopTowerFromBelow ();
+        if (block != null) {
+            // push block back to pool stack
+            block.SetParent (this.transform);
+            block.gameObject.SetActive (false);
+            pooledBlocks.Push (block.gameObject);
+        }
+
     }
 
     public void GrowTower (Transform towerToGrow) {
@@ -86,7 +86,7 @@ public class BlockPooler : MonoBehaviour {
             block.SetActive (true);
 
             // use tower logic to grow tower
-            towerToGrow.GetComponent<TowerLogic> ().GrowTower (block.transform);
+            towerToGrow.GetComponent<TowerStack> ().GrowTowerFromBelow (block.transform);
         }
     }
 }

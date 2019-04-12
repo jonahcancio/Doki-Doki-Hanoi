@@ -404,7 +404,7 @@ PrefabInstance:
         type: 3}
       propertyPath: towerBindedTo
       value: 
-      objectReference: {fileID: 1789945481671495506}
+      objectReference: {fileID: 1789945481671495505}
     - target: {fileID: 1154205658708949193, guid: db228125cd04c0c4fadf7ddb80d3e8ad,
         type: 3}
       propertyPath: sadSprite
@@ -1009,7 +1009,7 @@ PrefabInstance:
         type: 3}
       propertyPath: towerBindedTo
       value: 
-      objectReference: {fileID: 1789945483266281176}
+      objectReference: {fileID: 1789945483266281175}
     - target: {fileID: 1154205658708949193, guid: db228125cd04c0c4fadf7ddb80d3e8ad,
         type: 3}
       propertyPath: neutralSprite
@@ -1588,7 +1588,7 @@ PrefabInstance:
         type: 3}
       propertyPath: towerBindedTo
       value: 
-      objectReference: {fileID: 3340404522615276826}
+      objectReference: {fileID: 3340404522615276825}
     - target: {fileID: 1154205658708949193, guid: db228125cd04c0c4fadf7ddb80d3e8ad,
         type: 3}
       propertyPath: happySprite

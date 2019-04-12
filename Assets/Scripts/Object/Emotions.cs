@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Emotions : MonoBehaviour {
 
     private int maxTowerHeight = GameConstants.maxTowerHeight;
-    public TowerLogic towerBindedTo;
+    public TowerStack towerBindedTo;
 
     public Sprite happySprite;
     public Sprite neutralSprite;

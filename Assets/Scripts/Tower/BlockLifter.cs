@@ -7,20 +7,23 @@ public class BlockLifter : MonoBehaviour {
     private Camera mainCamera;
     private Canvas mainCanvas;
 
-    private TowerLogic towerLogic;
+    private EventBus eventBus;
+    private TowerStack towerStack;
 
     void Start() {
         this.mainCamera = Camera.main;
         this.mainCanvas = this.transform.parent.GetComponent<Canvas> ().rootCanvas;
 
-        // subscribe methods to mouse events
-        this.towerLogic = this.GetComponent<TowerLogic>();
-        this.towerLogic.OnLeftMouseDragEvent(this.MoveTopBlockToMouse);
-        this.towerLogic.OnLeftMouseReleaseEvent(this.ResetTopBlockPosition);
+        this.towerStack = this.GetComponent<TowerStack>();
+
+        // subscribe methods to event bus
+        this.eventBus = this.GetComponent<EventBus>();
+        this.eventBus.OnLeftMouseDragEvent(this.MoveTopBlockToMouse);
+        this.eventBus.OnLeftMouseReleaseEvent(this.ResetTopBlockPosition);
     }
 
     public void MoveTopBlockToMouse (Vector2 mousePosition) {
-        Transform topBlock = this.towerLogic.GetTopBlock();
+        Transform topBlock = this.towerStack.GetTopBlock();
         if (topBlock) {
             Vector2 world = this.mainCamera.ScreenToWorldPoint (mousePosition);
             topBlock.position = new Vector3 (world.x, world.y, mainCanvas.planeDistance);
@@ -30,7 +33,7 @@ public class BlockLifter : MonoBehaviour {
     }
 
     public void ResetTopBlockPosition() {
-        Transform topBlock = this.towerLogic.GetTopBlock();
+        Transform topBlock = this.towerStack.GetTopBlock();
         if (topBlock) {
             topBlock.GetComponent<Block> ().ResetPosition ();
         }        
