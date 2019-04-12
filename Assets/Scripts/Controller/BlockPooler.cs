@@ -29,10 +29,19 @@ public class BlockPooler : MonoBehaviour {
         GameObject block;
         for (int i = maxTowerHeight; i > 0; i--) {
             block = Instantiate (blockPrefab, this.transform);
-            block.name = "Block" + i;
+            block.name = "Block";
             block.GetComponent<Block> ().blockNum = i;
             block.SetActive (false);
             pooledBlocks.Push (block);
+        }
+    }
+
+    void Start() {
+        // subscribe chop and grow tower events to middle and right mouse clicks
+        foreach(Transform tower in this.hanoiZone) {
+            EventBus eventBus = tower.GetComponent<EventBus>();
+            eventBus.OnMiddleClickEvent(this.GrowTower);
+            eventBus.OnRightClickEvent(this.ChopTower);
         }
     }
 

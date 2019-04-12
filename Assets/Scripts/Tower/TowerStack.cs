@@ -36,16 +36,27 @@ public class TowerStack : MonoBehaviour {
     public Transform GetTopBlock () {
         int blockIndex = this.slotIndex + 1;
         if (blockIndex < maxTowerHeight) {
-            return this.transform.GetChild (blockIndex).GetChild (0);
+            return this.transform.GetChild (blockIndex).Find("Block");
         }
         return null;
+    }
+
+    public Transform GetTopBlockSlot() {
+        if(this.slotIndex < maxTowerHeight - 1) {
+            return this.transform.GetChild(this.slotIndex + 1);
+        }
+        return null;
+    }
+
+    public Transform GetTopSlot() {
+        return this.transform.GetChild(this.slotIndex);
     }
 
     // returns the block number of the bottom block of tower
     public int GetBottomBlockNum () {
         Transform bottomSlot = this.transform.GetChild (maxTowerHeight - 1);
         if (bottomSlot.childCount > 0) {
-            Transform bottomBlock = bottomSlot.GetChild (0);
+            Transform bottomBlock = bottomSlot.Find("Block");
             if (bottomBlock) {
                 return bottomBlock.GetComponent<Block> ().blockNum;
             }
@@ -55,7 +66,7 @@ public class TowerStack : MonoBehaviour {
 
     // returns true if newTopBlock parameter has a lower block number than the current top block's
     // returns false otherwise; this is the main logic of Tower of Hanoi
-    bool CanSupportNewTopBlock (Transform newTopBlock) {
+    public bool CanSupportNewTopBlock (Transform newTopBlock) {
         Transform topBlock = this.GetTopBlock ();
         if (!topBlock) {
             return true;
@@ -80,7 +91,7 @@ public class TowerStack : MonoBehaviour {
     public Transform PopTopBlock () {
         if (slotIndex < maxTowerHeight - 1) {
             slotIndex++;
-            Transform byeBlock = this.transform.GetChild (slotIndex).GetChild (0);
+            Transform byeBlock = this.transform.GetChild (slotIndex).Find("Block");
             return byeBlock;
         }
         return null;
@@ -121,7 +132,7 @@ public class TowerStack : MonoBehaviour {
         if (slot.childCount > 0) {
             // remove block parentage and positioning
             slot.SetSiblingIndex (0);
-            Transform choppedBlock = slot.GetChild (0);
+            Transform choppedBlock = slot.Find("Block");
 
             // adjust stack data
             this.slotIndex++;

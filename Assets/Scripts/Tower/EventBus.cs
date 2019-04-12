@@ -8,9 +8,14 @@ public class EventBus : MonoBehaviour {
     private int maxTowerHeight = GameConstants.maxTowerHeight;
 
     private Action<Vector2> LeftMouseDragEvent;
-    public Action LeftMouseReleaseEvent;
-    public Action<Transform> TowerDropEvent;
+    private Action LeftMouseReleaseEvent;
+    private Action<Transform> TowerDropEvent;
+    private Action<Transform> MiddleClickEvent;
+    private Action RightClickEvent;
 
+    private Action<Transform, Transform> EnterWhileDraggingEvent;
+    private Action ExitWhileDraggingEvent;
+    private Action<Transform> LeftPressEvent;
 
     // Binding methods for LeftMouseDragEvent
     public void EmitLeftMouseDragEvent (Vector2 mousePosition) {
@@ -40,5 +45,52 @@ public class EventBus : MonoBehaviour {
     }
     public void OnTowerDropEvent (Action<Transform> callback) {
         this.TowerDropEvent += callback;
+    }
+
+    // Binding methods for MiddleClickEvent
+    public void EmitMiddleClickEvent (Transform towerClicked) {
+        if (this.MiddleClickEvent != null) {
+            this.MiddleClickEvent (towerClicked);
+        }
+    }
+    public void OnMiddleClickEvent (Action<Transform> callback) {
+        this.MiddleClickEvent += callback;
+    }
+
+    // Binding methods for RightClickEvent
+    public void EmitRightClickEvent () {
+        if (this.RightClickEvent != null) {
+            this.RightClickEvent ();
+        }
+    }
+    public void OnRightClickEvent (Action callback) {
+        this.RightClickEvent += callback;
+    }
+
+    public void EmitEnterWhileDraggingEvent (Transform toTower, Transform fromTower) {
+        if (this.EnterWhileDraggingEvent != null) {
+            this.EnterWhileDraggingEvent (toTower, fromTower);
+        }
+    }
+    public void OnEnterWhileDraggingEvent (Action<Transform, Transform> callback) {
+        this.EnterWhileDraggingEvent += callback;
+    }
+
+    public void EmitExitWhileDraggingEvent () {
+        if (this.ExitWhileDraggingEvent != null) {
+            this.ExitWhileDraggingEvent ();
+        }
+    }
+    public void OnExitWhileDraggingEvent (Action callback) {
+        this.ExitWhileDraggingEvent += callback;
+    }
+
+    public void EmitLeftPressEvent (Transform towerPressed) {
+        if (this.LeftPressEvent != null) {
+            this.LeftPressEvent (towerPressed);
+        }
+    }
+    public void OnLeftPressEvent (Action<Transform> callback) {
+        this.LeftPressEvent += callback;
     }
 }
