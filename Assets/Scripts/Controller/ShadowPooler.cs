@@ -38,27 +38,29 @@ public class ShadowPooler : MonoBehaviour {
 
     void ShowToShadow (Transform toTower, Transform fromTower) {
         if (toTower != fromTower) {
-            // find toTower slot and place toShadow block inside it
-            TowerStack toTowerStack = toTower.GetComponent<TowerStack> ();
-            Transform toSlot = toTowerStack.GetTopSlot ();
-            this.toShadow.transform.SetParent (toSlot);
-            this.toShadow.SetActive (true);
-
-            // Decide color of shadow block based on validity of fromTower's topBlock move
             Transform fromBlock = fromTower.GetComponent<TowerStack> ().GetTopBlock ();
-            Color shadowColor;
-            if (toTowerStack.CanSupportNewTopBlock (fromBlock)) {
-                shadowColor = new Color (0f, 1f, 0f, 0.7f); // Green for valid
-            } else {
-                shadowColor = new Color (1f, 0f, 0f, 0.7f); // Red for invalid
-            }
+            if (fromBlock) {
+                // find toTower slot and place toShadow block inside it
+                TowerStack toTowerStack = toTower.GetComponent<TowerStack> ();
+                Transform toSlot = toTowerStack.GetTopSlot ();
+                this.toShadow.transform.SetParent (toSlot);
+                this.toShadow.SetActive (true);
 
-            // Adjust shadow's size and color
-            Block toShadowData = this.toShadow.GetComponent<Block> ();
-            toShadowData.ResetPosition ();
-            toShadowData.SetColor (shadowColor);
-            int blockNum = fromBlock.GetComponent<Block> ().blockNum;
-            toShadowData.SetBlockNum (blockNum);
+                // Decide color of shadow block based on validity of fromTower's topBlock move
+                Color shadowColor;
+                if (toTowerStack.CanSupportNewTopBlock (fromBlock)) {
+                    shadowColor = new Color (0f, 1f, 0f, 0.7f); // Green for valid
+                } else {
+                    shadowColor = new Color (1f, 0f, 0f, 0.7f); // Red for invalid
+                }
+
+                // Adjust shadow's size and color
+                Block toShadowData = this.toShadow.GetComponent<Block> ();
+                toShadowData.ResetPosition ();
+                toShadowData.SetColor (shadowColor);
+                int blockNum = fromBlock.GetComponent<Block> ().blockNum;
+                toShadowData.SetBlockNum (blockNum);
+            }
         }
     }
 
@@ -71,21 +73,22 @@ public class ShadowPooler : MonoBehaviour {
     void ShowFromShadow (Transform fromTower) {
         // find toTower slot and place toShadow block inside it
         TowerStack fromTowerStack = fromTower.GetComponent<TowerStack> ();
-        Transform fromSlot = fromTowerStack.GetTopBlockSlot ();
-        if (fromSlot) {
-            this.fromShadow.transform.SetParent (fromSlot);
-            this.fromShadow.SetActive (true);
-        }
-
-        // Adjust shadow's size and color
-        Block fromShadowData = this.fromShadow.GetComponent<Block> ();
-        fromShadowData.ResetPosition ();
-        fromShadowData.SetColor (new Color (1f, 1f, 1f, 0.7f));
         Transform fromBlock = fromTowerStack.GetTopBlock ();
         if (fromBlock) {
+            Transform fromSlot = fromTowerStack.GetTopBlockSlot ();
+            if (fromSlot) {
+                this.fromShadow.transform.SetParent (fromSlot);
+                this.fromShadow.SetActive (true);
+            }
+
+            // Adjust shadow's size and color
+            Block fromShadowData = this.fromShadow.GetComponent<Block> ();
+            fromShadowData.ResetPosition ();
+            fromShadowData.SetColor (new Color (1f, 1f, 1f, 0.7f));
             int blockNum = fromBlock.GetComponent<Block> ().blockNum;
             fromShadowData.SetBlockNum (blockNum);
         }
+
     }
 
     void HideFromShadow () {
