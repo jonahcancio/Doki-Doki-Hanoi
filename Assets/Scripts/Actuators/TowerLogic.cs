@@ -11,12 +11,16 @@ public class TowerLogic : MonoBehaviour {
     private Action<Vector2> LeftMouseDragEvent;
     public Action LeftMouseReleaseEvent;
 
-    void Start () {
+    void OnEnable () {
         this.towerStack = this.GetComponent<TowerStack> ();
     }
 
     public Transform GetTopBlock () {
         return this.towerStack.GetTopBlock ();
+    }
+
+    public int GetTowerHeight() {
+        return this.maxTowerHeight - this.towerStack.slotIndex - 1;
     }
 
     bool CanSupportNewTopBlock (Transform newTopBlock) {
@@ -45,7 +49,7 @@ public class TowerLogic : MonoBehaviour {
             TowerStack towerStackFrom = towerFrom.GetComponent<TowerStack> ();
             Transform topBlock = towerStackFrom.GetTopBlock ();
 
-            if (this.CanSupportNewTopBlock (topBlock)) {
+            if (topBlock && this.CanSupportNewTopBlock (topBlock)) {
                 // block transfer is valid; commence transfer procedure
                 topBlock = towerStackFrom.PopTopBlock ();
                 this.towerStack.PushTopBlock (topBlock);
