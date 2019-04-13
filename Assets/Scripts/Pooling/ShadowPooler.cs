@@ -49,9 +49,9 @@ public class ShadowPooler : MonoBehaviour {
                 // Decide color of shadow block based on validity of fromTower's topBlock move
                 Color shadowColor;
                 if (toTowerStack.CanSupportNewTopBlock (fromBlock)) {
-                    shadowColor = new Color (0f, 1f, 0f, 0.7f); // Green for valid
+                    shadowColor = new Color (0f, 1f, 0f, 0.6f); // Green for valid
                 } else {
-                    shadowColor = new Color (1f, 0f, 0f, 0.7f); // Red for invalid
+                    shadowColor = new Color (1f, 0f, 0f, 0.6f); // Red for invalid
                 }
 
                 // Adjust shadow's size and color
@@ -84,7 +84,7 @@ public class ShadowPooler : MonoBehaviour {
             // Adjust shadow's size and color
             Block fromShadowData = this.fromShadow.GetComponent<Block> ();
             fromShadowData.ResetPosition ();
-            fromShadowData.SetColor (new Color (0f, 0f, 0f, 0.7f)); //gray shadow
+            fromShadowData.SetColor (new Color (0f, 0f, 0f, 0.6f)); //gray shadow
             int blockNum = fromBlock.GetComponent<Block> ().blockNum;
             fromShadowData.SetBlockNum (blockNum);
         }

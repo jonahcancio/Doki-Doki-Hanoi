@@ -10,16 +10,18 @@ public class BlockPooler : MonoBehaviour {
     public GameObject blockPrefab;
     public GameObject slotPrefab;
 
-    private Transform hanoiZone;
+    public Transform gameArea;
 
     private static Stack<GameObject> pooledBlocks;
 
-    private Transform initialTower;
+    public Transform initialTower;
 
     void OnEnable () {
         // instantiate block slots
-        this.hanoiZone = GameObject.FindWithTag ("GameArea").transform;
-        foreach (Transform tower in this.hanoiZone) {
+        if (!this.gameArea) {
+            this.gameArea = GameObject.FindWithTag ("GameArea").transform;
+        }
+        foreach (Transform tower in this.gameArea) {
             GameObject slot;
             for (int i = 0; i < maxTowerHeight; i++) {
                 slot = Instantiate (slotPrefab, tower);
@@ -38,17 +40,18 @@ public class BlockPooler : MonoBehaviour {
             block.SetActive (false);
             pooledBlocks.Push (block);
         }
-
-        // setup initial tower
-        initialTower = GameObject.FindWithTag ("InitialTower").transform;
-        for (int i = 0; i < initialBlockCount; i++) {
-            this.GrowTower (null);
-        }
     }
 
     void Start () {
+        // setup initial tower
+        if (!this.initialTower) {
+            initialTower = GameObject.FindWithTag ("InitialTower").transform;
+        }
+
+        ResetBlocksToInitialTower ();
+
         // subscribe chop and grow tower events to middle and right mouse clicks
-        foreach (Transform tower in this.hanoiZone) {
+        foreach (Transform tower in this.gameArea) {
             EventBus eventBus = tower.GetComponent<EventBus> ();
             eventBus.OnMiddleClickEvent (this.GrowTower);
             eventBus.OnRightClickEvent (this.ChopTower);
@@ -67,8 +70,8 @@ public class BlockPooler : MonoBehaviour {
     }
 
     Transform GetTowerToChop () {
-        Transform maxTower = this.hanoiZone.GetChild (0);
-        foreach (Transform tower in this.hanoiZone) {
+        Transform maxTower = this.gameArea.GetChild (0);
+        foreach (Transform tower in this.gameArea) {
             int maxBlockNum = maxTower.GetComponent<TowerStack> ().GetBottomBlockNum ();
             int blockNum = tower.GetComponent<TowerStack> ().GetBottomBlockNum ();
             if (blockNum > maxBlockNum) {
@@ -93,7 +96,6 @@ public class BlockPooler : MonoBehaviour {
             block.gameObject.SetActive (false);
             pooledBlocks.Push (block.gameObject);
         }
-
     }
 
     public void GrowTower (Transform towerToGrow) {
@@ -107,6 +109,15 @@ public class BlockPooler : MonoBehaviour {
             // use tower logic to grow tower
             // towerToGrow.GetComponent<TowerStack> ().GrowTowerFromBelow (block.transform);
             initialTower.GetComponent<TowerStack> ().GrowTowerFromBelow (block.transform);
+        }
+    }
+
+    public void ResetBlocksToInitialTower () {
+        while (pooledBlocks.Count < maxTowerHeight) {
+            this.ChopTower ();
+        }
+        for (int i = 0; i < initialBlockCount; i++) {
+            this.GrowTower (null);
         }
     }
 }
