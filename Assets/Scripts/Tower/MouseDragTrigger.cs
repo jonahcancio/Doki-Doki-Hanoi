@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class MouseDragTrigger : MonoBehaviour,
     IPointerDownHandler, IDragHandler, IDropHandler, IPointerUpHandler,
-    IPointerEnterHandler, IPointerExitHandler {
+    IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler {
 
         public static Transform towerBeingDragged;
         public static Transform towerReadyToDrop;
@@ -23,7 +23,7 @@ public class MouseDragTrigger : MonoBehaviour,
         }
 
         public void OnPointerDown (PointerEventData eventData) {
-            if (eventData.button == 0) {
+            if (eventData.button == PointerEventData.InputButton.Left) {
                 this.eventBus.EmitLeftPressEvent (this.transform);
 
                 this.eventBus.EmitLeftMouseDragEvent (eventData.position);
@@ -32,25 +32,22 @@ public class MouseDragTrigger : MonoBehaviour,
         }
 
         public void OnDrag (PointerEventData eventData) {
-            if (eventData.button == 0) {
+            if (eventData.button == PointerEventData.InputButton.Left) {
                 this.eventBus.EmitLeftMouseDragEvent (eventData.position);
             }
         }
 
         public void OnPointerUp (PointerEventData eventData) {
-            if (eventData.button == 0) {
+            if (eventData.button == PointerEventData.InputButton.Left) {
                 this.eventBus.EmitLeftMouseReleaseEvent ();
-                Debug.Log ("POINTER UP " + this.gameObject.name);
 
                 towerReadyToDrop = towerBeingDragged;
-                towerBeingDragged = null;                
+                towerBeingDragged = null;
             }
         }
 
         public void OnDrop (PointerEventData eventData) {
-            if (eventData.button == 0) {
-                Debug.Log ("DRAG RELEASE " + this.gameObject.name);
-
+            if (eventData.button == PointerEventData.InputButton.Left) {
                 this.eventBus.EmitTowerDropEvent (towerReadyToDrop);
                 towerReadyToDrop = null;
             }
@@ -69,4 +66,13 @@ public class MouseDragTrigger : MonoBehaviour,
             }
         }
 
+        public void OnPointerClick (PointerEventData eventData) {            
+            if (!towerBeingDragged) {
+                if (eventData.button == PointerEventData.InputButton.Middle) {
+                    this.eventBus.EmitMiddleClickEvent (this.transform);
+                } else if (eventData.button == PointerEventData.InputButton.Right) {
+                    this.eventBus.EmitRightClickEvent ();
+                }
+            }
+        }
     }

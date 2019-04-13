@@ -11,19 +11,23 @@ public class TowerStack : MonoBehaviour {
     private EventBus eventBus;
 
     void Start () {
-        // initialize slot index by traversing empty slots until child block is found
-        this.slotIndex = maxTowerHeight - 1;
-        for (int i = 0; i < maxTowerHeight; i++) {
-            Transform slot = this.transform.GetChild (i);
-            if (slot.childCount > 0) {
-                this.slotIndex = i - 1;
-                break;
-            }
-        }
-
+        // initialize slot index
+        this.RefreshSlotIndex();
         // subscribe block transfers to the drop event
         this.eventBus = this.GetComponent<EventBus> ();
         this.eventBus.OnTowerDropEvent (this.AttemptBlockTransferFrom);
+    }
+
+    // refreshing slot index by traversing slots from the bottom until empty slot is found
+    public void RefreshSlotIndex () {
+        this.slotIndex = -1;
+        for (int i = this.transform.childCount - 1; i >= 0; i--) {
+            Transform slot = this.transform.GetChild (i);
+            if (slot.Find ("Block") == null) {
+                this.slotIndex = i;
+                break;
+            }
+        }
     }
 
     // COMPUTED PROPERTIES  -- functions that derive values based on fields
@@ -36,27 +40,27 @@ public class TowerStack : MonoBehaviour {
     public Transform GetTopBlock () {
         int blockIndex = this.slotIndex + 1;
         if (blockIndex < maxTowerHeight) {
-            return this.transform.GetChild (blockIndex).Find("Block");
+            return this.transform.GetChild (blockIndex).Find ("Block");
         }
         return null;
     }
 
-    public Transform GetTopBlockSlot() {
-        if(this.slotIndex < maxTowerHeight - 1) {
-            return this.transform.GetChild(this.slotIndex + 1);
+    public Transform GetTopBlockSlot () {
+        if (this.slotIndex < maxTowerHeight - 1) {
+            return this.transform.GetChild (this.slotIndex + 1);
         }
         return null;
     }
 
-    public Transform GetTopSlot() {
-        return this.transform.GetChild(this.slotIndex);
+    public Transform GetTopSlot () {
+        return this.transform.GetChild (this.slotIndex);
     }
 
     // returns the block number of the bottom block of tower
     public int GetBottomBlockNum () {
         Transform bottomSlot = this.transform.GetChild (maxTowerHeight - 1);
         if (bottomSlot.childCount > 0) {
-            Transform bottomBlock = bottomSlot.Find("Block");
+            Transform bottomBlock = bottomSlot.Find ("Block");
             if (bottomBlock) {
                 return bottomBlock.GetComponent<Block> ().blockNum;
             }
@@ -86,12 +90,12 @@ public class TowerStack : MonoBehaviour {
             slotIndex--;
         }
     }
-    
+
     // pops top block from stack, updates slot index accordingly, and returns top block
     public Transform PopTopBlock () {
         if (slotIndex < maxTowerHeight - 1) {
             slotIndex++;
-            Transform byeBlock = this.transform.GetChild (slotIndex).Find("Block");
+            Transform byeBlock = this.transform.GetChild (slotIndex).Find ("Block");
             return byeBlock;
         }
         return null;
@@ -132,7 +136,7 @@ public class TowerStack : MonoBehaviour {
         if (slot.childCount > 0) {
             // remove block parentage and positioning
             slot.SetSiblingIndex (0);
-            Transform choppedBlock = slot.Find("Block");
+            Transform choppedBlock = slot.Find ("Block");
 
             // adjust stack data
             this.slotIndex++;

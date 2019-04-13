@@ -20,6 +20,7 @@ public class Emotions : MonoBehaviour {
     void Start () {
         this.image = this.GetComponent<Image> ();
         this.previousHeight = this.towerBindedTo.GetTowerHeight ();
+        this.previousHeight = -1;
     }
 
     void Update () {

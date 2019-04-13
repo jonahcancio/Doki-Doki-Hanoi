@@ -25,6 +25,7 @@ public class BlockPooler : MonoBehaviour {
                 slot = Instantiate (slotPrefab, tower);
                 slot.name = "Slot" + (i + 1);
             }
+            tower.GetComponent<TowerStack> ().RefreshSlotIndex ();
         }
 
         // instantiate blocks
@@ -39,18 +40,18 @@ public class BlockPooler : MonoBehaviour {
         }
 
         // setup initial tower
-        initialTower = GameObject.FindWithTag("InitialTower").transform;
+        initialTower = GameObject.FindWithTag ("InitialTower").transform;
         for (int i = 0; i < initialBlockCount; i++) {
-            this.GrowTower(null);
+            this.GrowTower (null);
         }
     }
 
-    void Start() {
+    void Start () {
         // subscribe chop and grow tower events to middle and right mouse clicks
-        foreach(Transform tower in this.hanoiZone) {
-            EventBus eventBus = tower.GetComponent<EventBus>();
-            eventBus.OnMiddleClickEvent(this.GrowTower);
-            eventBus.OnRightClickEvent(this.ChopTower);
+        foreach (Transform tower in this.hanoiZone) {
+            EventBus eventBus = tower.GetComponent<EventBus> ();
+            eventBus.OnMiddleClickEvent (this.GrowTower);
+            eventBus.OnRightClickEvent (this.ChopTower);
         }
     }
 

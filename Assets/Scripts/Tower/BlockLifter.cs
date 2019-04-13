@@ -20,8 +20,6 @@ public class BlockLifter : MonoBehaviour {
         this.eventBus = this.GetComponent<EventBus>();
         this.eventBus.OnLeftMouseDragEvent(this.MoveTopBlockToMouse);
         this.eventBus.OnLeftMouseReleaseEvent(this.ResetTopBlockPosition);
-        // this.eventBus.OnMiddleClickMouseEvent += this.MoveTopBlockToMouse;
-        // this.eventBus.OnRightClickEvent += this.MoveTopBlockToMouse;
     }
 
     public void MoveTopBlockToMouse (Vector2 mousePosition) {

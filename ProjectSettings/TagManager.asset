@@ -7,6 +7,10 @@ TagManager:
   - GameArea
   - InitialTower
   - GoalTower
+  - DialogueBox
+  - DialoguePool
+  - IntroBackground
+  - HostGirl
   layers:
   - Default
   - TransparentFX
@@ -55,4 +59,7 @@ TagManager:
     locked: 0
   - name: Tower Foreground
     uniqueID: 3941672211
+    locked: 0
+  - name: UI Messageground
+    uniqueID: 2499945195
     locked: 0
