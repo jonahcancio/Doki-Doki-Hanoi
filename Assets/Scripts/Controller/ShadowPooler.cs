@@ -14,7 +14,7 @@ public class ShadowPooler : MonoBehaviour {
         //instantiate shadow blocks
         this.fromShadow = Instantiate (blockPrefab, this.transform);
         this.fromShadow.name = "Shadow";
-        this.fromShadow.GetComponent<Block> ().Shadowize ();
+        // this.fromShadow.GetComponent<Block> ().Shadowize ();
         this.fromShadow.SetActive (false);
 
         this.toShadow = Instantiate (blockPrefab, this.transform);
@@ -84,7 +84,7 @@ public class ShadowPooler : MonoBehaviour {
             // Adjust shadow's size and color
             Block fromShadowData = this.fromShadow.GetComponent<Block> ();
             fromShadowData.ResetPosition ();
-            fromShadowData.SetColor (new Color (1f, 1f, 1f, 0.7f));
+            fromShadowData.SetColor (new Color (0f, 0f, 0f, 0.7f)); //gray shadow
             int blockNum = fromBlock.GetComponent<Block> ().blockNum;
             fromShadowData.SetBlockNum (blockNum);
         }

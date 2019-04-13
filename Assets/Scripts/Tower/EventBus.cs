@@ -7,15 +7,17 @@ public class EventBus : MonoBehaviour {
 
     private int maxTowerHeight = GameConstants.maxTowerHeight;
 
-    private Action<Vector2> LeftMouseDragEvent;
-    private Action LeftMouseReleaseEvent;
-    private Action<Transform> TowerDropEvent;
-    private Action<Transform> MiddleClickEvent;
-    private Action RightClickEvent;
+    public Action<Vector2> LeftMouseDragEvent;
+    public Action LeftMouseReleaseEvent;
+    public Action<Transform> TowerDropEvent;
+    public Action<Transform> MiddleClickEvent;
+    public Action<Vector2> MiddleClickMouseEvent;
+    public Action RightClickEvent;
+    public Action<Vector2> RightClickMouseEvent;
 
-    private Action<Transform, Transform> EnterWhileDraggingEvent;
-    private Action ExitWhileDraggingEvent;
-    private Action<Transform> LeftPressEvent;
+    public Action<Transform, Transform> EnterWhileDraggingEvent;
+    public Action ExitWhileDraggingEvent;
+    public Action<Transform> LeftPressEvent;
 
     // Binding methods for LeftMouseDragEvent
     public void EmitLeftMouseDragEvent (Vector2 mousePosition) {
@@ -93,4 +95,10 @@ public class EventBus : MonoBehaviour {
     public void OnLeftPressEvent (Action<Transform> callback) {
         this.LeftPressEvent += callback;
     }
+
+    // public void EmitMiddleClickMouseEvent (Vector2 mousePosition) {
+    //     if (this.MiddleClickEvent != null) {
+    //         this.MiddleClickEvent (mousePosition);
+    //     }
+    // }
 }

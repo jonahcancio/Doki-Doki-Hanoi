@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BlockPooler : MonoBehaviour {
 
-    public static int maxTowerHeight = GameConstants.maxTowerHeight;
+    private int maxTowerHeight = GameConstants.maxTowerHeight;
+    private int initialBlockCount = GameConstants.initialBlockCount;
 
     public GameObject blockPrefab;
     public GameObject slotPrefab;
@@ -12,6 +13,8 @@ public class BlockPooler : MonoBehaviour {
     private Transform hanoiZone;
 
     private static Stack<GameObject> pooledBlocks;
+
+    private Transform initialTower;
 
     void OnEnable () {
         // instantiate block slots
@@ -33,6 +36,12 @@ public class BlockPooler : MonoBehaviour {
             block.GetComponent<Block> ().blockNum = i;
             block.SetActive (false);
             pooledBlocks.Push (block);
+        }
+
+        // setup initial tower
+        initialTower = GameObject.FindWithTag("InitialTower").transform;
+        for (int i = 0; i < initialBlockCount; i++) {
+            this.GrowTower(null);
         }
     }
 
@@ -95,7 +104,8 @@ public class BlockPooler : MonoBehaviour {
             block.SetActive (true);
 
             // use tower logic to grow tower
-            towerToGrow.GetComponent<TowerStack> ().GrowTowerFromBelow (block.transform);
+            // towerToGrow.GetComponent<TowerStack> ().GrowTowerFromBelow (block.transform);
+            initialTower.GetComponent<TowerStack> ().GrowTowerFromBelow (block.transform);
         }
     }
 }

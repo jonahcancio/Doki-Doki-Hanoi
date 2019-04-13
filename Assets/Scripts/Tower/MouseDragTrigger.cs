@@ -6,21 +6,16 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class MouseDragTrigger : MonoBehaviour,
-    IPointerDownHandler, IDragHandler, IDropHandler, IEndDragHandler, IPointerUpHandler,
+    IPointerDownHandler, IDragHandler, IDropHandler, IPointerUpHandler,
     IPointerEnterHandler, IPointerExitHandler {
 
         public static Transform towerBeingDragged;
+        public static Transform towerReadyToDrop;
         public static Transform towerBelowMouse;
-
-        // private Image image;
-        // private Color originalColor;
-        // public Color selectedColor = new Color (1f, 2f, 0f, 0.5f);
 
         private EventBus eventBus;
 
         public void Start () {
-            // this.image = this.GetComponent<Image> ();
-            // this.originalColor = this.image.color;
 
             towerBeingDragged = null;
 
@@ -33,7 +28,6 @@ public class MouseDragTrigger : MonoBehaviour,
 
                 this.eventBus.EmitLeftMouseDragEvent (eventData.position);
                 towerBeingDragged = this.transform;
-                // this.image.color = this.selectedColor;
             }
         }
 
@@ -46,25 +40,19 @@ public class MouseDragTrigger : MonoBehaviour,
         public void OnPointerUp (PointerEventData eventData) {
             if (eventData.button == 0) {
                 this.eventBus.EmitLeftMouseReleaseEvent ();
+                Debug.Log ("POINTER UP " + this.gameObject.name);
 
-                // this.image.color = this.originalColor;
+                towerReadyToDrop = towerBeingDragged;
+                towerBeingDragged = null;                
             }
         }
 
         public void OnDrop (PointerEventData eventData) {
             if (eventData.button == 0) {
-                if (towerBeingDragged) {
-                    this.eventBus.EmitTowerDropEvent (towerBeingDragged);
-                }
-            }
-        }
+                Debug.Log ("DRAG RELEASE " + this.gameObject.name);
 
-        public void OnEndDrag (PointerEventData eventData) {
-            if (eventData.button == 0) {
-                this.eventBus.EmitLeftMouseReleaseEvent ();
-
-                towerBeingDragged = null;
-                // this.image.color = this.originalColor;
+                this.eventBus.EmitTowerDropEvent (towerReadyToDrop);
+                towerReadyToDrop = null;
             }
         }
 
