@@ -12,15 +12,12 @@ public class BlockPooler : MonoBehaviour {
 
     public Transform gameArea;
 
-    private static Stack<GameObject> pooledBlocks;
+    private Stack<GameObject> pooledBlocks;
 
     public Transform initialTower;
 
     void OnEnable () {
         // instantiate block slots
-        if (!this.gameArea) {
-            this.gameArea = GameObject.FindWithTag ("GameArea").transform;
-        }
         foreach (Transform tower in this.gameArea) {
             GameObject slot;
             for (int i = 0; i < maxTowerHeight; i++) {
@@ -31,14 +28,14 @@ public class BlockPooler : MonoBehaviour {
         }
 
         // instantiate blocks
-        pooledBlocks = new Stack<GameObject> ();
+        this.pooledBlocks = new Stack<GameObject> ();
         GameObject block;
         for (int i = maxTowerHeight; i > 0; i--) {
             block = Instantiate (blockPrefab, this.transform);
             block.name = "Block";
             block.GetComponent<Block> ().blockNum = i;
             block.SetActive (false);
-            pooledBlocks.Push (block);
+            this.pooledBlocks.Push (block);
         }
     }
 
@@ -54,9 +51,13 @@ public class BlockPooler : MonoBehaviour {
         // subscribe chop and grow tower events to middle and right mouse clicks
         foreach (Transform tower in this.gameArea) {
             EventBus eventBus = tower.GetComponent<EventBus> ();
-            eventBus.OnMiddleClickEvent (this.GrowTower);
-            eventBus.OnRightClickEvent (this.ChopTower);
+            eventBus.MiddleClickEvent  += this.GrowTower;
+            eventBus.RightClickEvent += this.ChopTower;
         }
+    }
+
+    public int GetBlocksInPlay() {
+        return this.maxTowerHeight - this.pooledBlocks.Count;
     }
 
     // run through each tower and return the one with the biggest tower block
@@ -74,7 +75,7 @@ public class BlockPooler : MonoBehaviour {
 
     // chop the tower with the bigges tower block
     public void ChopTower () {
-        if (pooledBlocks.Count >= maxTowerHeight) {
+        if (this.pooledBlocks.Count >= maxTowerHeight) {
             Debug.Log ("Block pool is full! What are you trying to chop");
         }
         // locate the tower that must be chopped
@@ -86,17 +87,17 @@ public class BlockPooler : MonoBehaviour {
             // push block back to pool stack
             block.SetParent (this.transform);
             block.gameObject.SetActive (false);
-            pooledBlocks.Push (block.gameObject);
+            this.pooledBlocks.Push (block.gameObject);
         }
     }
 
     // grow the initial tower
     public void GrowTower (Transform towerClicked) {
-        if (pooledBlocks.Count <= 0) {
+        if (this.pooledBlocks.Count <= 0) {
             Debug.Log ("No more pooled blocks left");
         } else {
             // pop block from stack
-            GameObject block = pooledBlocks.Pop ();
+            GameObject block = this.pooledBlocks.Pop ();
             block.SetActive (true);
 
             // grow tower stack
@@ -108,7 +109,7 @@ public class BlockPooler : MonoBehaviour {
     // called by controller upon game reset
     public void ResetBlocksToInitialTower () {
         // return all blocks back to pool
-        while (pooledBlocks.Count < maxTowerHeight) {
+        while (this.pooledBlocks.Count < maxTowerHeight) {
             this.ChopTower ();
         }
         // add initial blocks to intial tower's stack

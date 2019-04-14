@@ -839,7 +839,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &675821225
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1776,7 +1776,7 @@ MonoBehaviour:
   messages:
   - emotion: {fileID: 0}
     text: Hi there! Monika here.
-  - emotion: {fileID: 0}
+  - emotion: {fileID: 21300000, guid: 6fa2712c70cc17d44b917cc880dd0f6d, type: 3}
     text: I'm from a game called "Doki Doki Literature Club" by Dan Salvato.
   - emotion: {fileID: 21300000, guid: 91b431ffea6533648b7074559d9a277d, type: 3}
     text: It's a free-to-play visual novel game where you can have fun with me and
@@ -1786,7 +1786,7 @@ MonoBehaviour:
       as a setting for his Tower of Hanoi game.
   - emotion: {fileID: 21300000, guid: 91b431ffea6533648b7074559d9a277d, type: 3}
     text: And he let me become the host! I was so excited!
-  - emotion: {fileID: 21300000, guid: 91b431ffea6533648b7074559d9a277d, type: 3}
+  - emotion: {fileID: 21300000, guid: 6fa2712c70cc17d44b917cc880dd0f6d, type: 3}
     text: "But I didn\u2019t want to hog all the fun  so I had my club mates join
       in as well."
   - emotion: {fileID: 21300000, guid: b7616227135c8214db841e503c38653c, type: 3}
@@ -1863,7 +1863,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 5e8502490947dfe4e91c3ff94e6192bd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6c0a324c659856e489f42f7d1c98cc50, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1912,16 +1912,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bdb682048aa6c84f8081aeb78c9897a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerBindedTo: {fileID: 3340404522615276825}
-  happySprite: {fileID: 21300000, guid: f1f438f776584064bb8fdcaaed607a26, type: 3}
-  neutralSprite: {fileID: 21300000, guid: 1bc6407ef82016840b1b22944ab20a96, type: 3}
-  sadSprite: {fileID: 21300000, guid: 806a7ee5fce0d3f469798050ce63dc42, type: 3}
+  towerBindedTo: {fileID: 7950937312050661400}
+  happySprite: {fileID: 21300000, guid: 6c0a324c659856e489f42f7d1c98cc50, type: 3}
+  neutralSprite: {fileID: 21300000, guid: f6454a687ea6d17418fdf2f5786d67b4, type: 3}
+  sadSprite: {fileID: 21300000, guid: 8066a343676a5274ba67832e3d28c588, type: 3}
   glitchedSprite: {fileID: 21300000, guid: 5e8502490947dfe4e91c3ff94e6192bd, type: 3}
-  gainSprite: {fileID: 0}
-  lossSprite: {fileID: 0}
-  hopeSprite: {fileID: 0}
-  whineSprite: {fileID: 0}
-  curiousSprite: {fileID: 0}
+  gainSprite: {fileID: 21300000, guid: e24eb2af6d5fef145a077c22aaef9eae, type: 3}
+  lossSprite: {fileID: 21300000, guid: 64b8f33878792cb4995680d826f41114, type: 3}
+  hopeSprite: {fileID: 21300000, guid: 0b7e75f5ce4c9f945891487a7c7b4906, type: 3}
+  whineSprite: {fileID: 21300000, guid: 1b51220de71d79e428105872cb2c3182, type: 3}
+  curiousSprite: {fileID: 21300000, guid: 41b14e736b76ca144ad45720b6ebe9f0, type: 3}
 --- !u!114 &1593999248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1935,8 +1935,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerBindedTo: {fileID: 3340404522615276820}
-  bestGirlSprite: {fileID: 21300000, guid: c64f40fe4a4fd074aadcdea3eb7a7647, type: 3}
-  bestGirlRemark: Don't get the wrong idea! It's not like I like you or anything...
+  bestGirlSprite: {fileID: 21300000, guid: 6c0a324c659856e489f42f7d1c98cc50, type: 3}
+  bestGirlRemark: Good. You picked me. But don't get the wrong idea, okay? It's not
+    like I wanted you to pick me...
   bestGirlName: Natsuki
 --- !u!1 &1610624169
 GameObject:
@@ -1995,7 +1996,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 5e8502490947dfe4e91c3ff94e6192bd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8214525be0f349b459953d22d43295c7, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2395,7 +2396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f3333a10274ca4fa1ea3103da0febd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamePhase: 1
+  gamePhase: 0
   introBackground: {fileID: 552165999}
   hostGirl: {fileID: 1548916256}
   dialogHandler: {fileID: 1548916264}
@@ -2562,16 +2563,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bdb682048aa6c84f8081aeb78c9897a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerBindedTo: {fileID: 1789945483266281175}
-  happySprite: {fileID: 21300000, guid: 0abe46cbe98a59243a68114c4fa505dc, type: 3}
-  neutralSprite: {fileID: 21300000, guid: 089b6fcee65509d4899dae9adc54cd71, type: 3}
-  sadSprite: {fileID: 21300000, guid: dc8fd70938f942040adde0b308ffd838, type: 3}
+  towerBindedTo: {fileID: 6402938369853916126}
+  happySprite: {fileID: 21300000, guid: 5e3ffb26479e4d245af29c6ef0b1c678, type: 3}
+  neutralSprite: {fileID: 21300000, guid: af07ed96c6f220b4c83262b0d0ff6a94, type: 3}
+  sadSprite: {fileID: 21300000, guid: ca217c74111c54e41bfefa920e75ea8f, type: 3}
   glitchedSprite: {fileID: 21300000, guid: 5e8502490947dfe4e91c3ff94e6192bd, type: 3}
-  gainSprite: {fileID: 21300000, guid: 0abe46cbe98a59243a68114c4fa505dc, type: 3}
-  lossSprite: {fileID: 21300000, guid: 1dc32baa263986f47abacbef61b6075f, type: 3}
-  hopeSprite: {fileID: 21300000, guid: 089b6fcee65509d4899dae9adc54cd71, type: 3}
-  whineSprite: {fileID: 21300000, guid: d10ef27585b02b845bb0229e0ad64e53, type: 3}
-  curiousSprite: {fileID: 21300000, guid: 9d05b9a137113ad42be5a0d43b80a64f, type: 3}
+  gainSprite: {fileID: 21300000, guid: 52a120ec77daf884fa4a94124ccfbbb9, type: 3}
+  lossSprite: {fileID: 21300000, guid: 7df426f1908534849b018483c59d28ea, type: 3}
+  hopeSprite: {fileID: 21300000, guid: cbfed58e8ae6412459ac20ff204b2646, type: 3}
+  whineSprite: {fileID: 21300000, guid: d4c3e0ef574e0f04eaec16a358eb24b3, type: 3}
+  curiousSprite: {fileID: 21300000, guid: 7acdfc91843d84c4193180a2a786f7ae, type: 3}
 --- !u!114 &1964076630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2612,7 +2613,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 5e8502490947dfe4e91c3ff94e6192bd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5e3ffb26479e4d245af29c6ef0b1c678, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2959,7 +2960,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 5e8502490947dfe4e91c3ff94e6192bd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8214525be0f349b459953d22d43295c7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2980,16 +2981,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bdb682048aa6c84f8081aeb78c9897a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerBindedTo: {fileID: 1944471334}
-  happySprite: {fileID: 21300000, guid: 5e8502490947dfe4e91c3ff94e6192bd, type: 3}
-  neutralSprite: {fileID: 21300000, guid: 5e8502490947dfe4e91c3ff94e6192bd, type: 3}
-  sadSprite: {fileID: 21300000, guid: 5e8502490947dfe4e91c3ff94e6192bd, type: 3}
-  glitchedSprite: {fileID: 21300000, guid: 5e8502490947dfe4e91c3ff94e6192bd, type: 3}
-  gainSprite: {fileID: 0}
-  lossSprite: {fileID: 0}
-  hopeSprite: {fileID: 0}
-  whineSprite: {fileID: 0}
-  curiousSprite: {fileID: 0}
+  towerBindedTo: {fileID: 1944471332}
+  happySprite: {fileID: 21300000, guid: 8214525be0f349b459953d22d43295c7, type: 3}
+  neutralSprite: {fileID: 21300000, guid: 8214525be0f349b459953d22d43295c7, type: 3}
+  sadSprite: {fileID: 21300000, guid: 8214525be0f349b459953d22d43295c7, type: 3}
+  glitchedSprite: {fileID: 21300000, guid: 8214525be0f349b459953d22d43295c7, type: 3}
+  gainSprite: {fileID: 21300000, guid: 8214525be0f349b459953d22d43295c7, type: 3}
+  lossSprite: {fileID: 21300000, guid: 8214525be0f349b459953d22d43295c7, type: 3}
+  hopeSprite: {fileID: 21300000, guid: 8214525be0f349b459953d22d43295c7, type: 3}
+  whineSprite: {fileID: 21300000, guid: c50472d4b5fc124478ddb020c66efb56, type: 3}
+  curiousSprite: {fileID: 21300000, guid: 8214525be0f349b459953d22d43295c7, type: 3}
 --- !u!114 &1154205657852887531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3070,7 +3071,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 5e8502490947dfe4e91c3ff94e6192bd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f1b673cf26a3b84489b86b78a84dc628, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3119,16 +3120,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bdb682048aa6c84f8081aeb78c9897a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerBindedTo: {fileID: 1789945481671495505}
-  happySprite: {fileID: 21300000, guid: 94202851eb84df1498e156ccfa78c2f1, type: 3}
-  neutralSprite: {fileID: 21300000, guid: 948f742b61ad9474f8dd64a5f12d810b, type: 3}
-  sadSprite: {fileID: 21300000, guid: f58a53bc57f1ab341b4acaf00012f4e0, type: 3}
+  towerBindedTo: {fileID: 6402938368260440640}
+  happySprite: {fileID: 21300000, guid: f1b673cf26a3b84489b86b78a84dc628, type: 3}
+  neutralSprite: {fileID: 21300000, guid: 03bf658ca6a049745a669567798a3e12, type: 3}
+  sadSprite: {fileID: 21300000, guid: 6a129eca021b1914daf4ec4a4f0f9a23, type: 3}
   glitchedSprite: {fileID: 21300000, guid: 5e8502490947dfe4e91c3ff94e6192bd, type: 3}
-  gainSprite: {fileID: 0}
-  lossSprite: {fileID: 0}
-  hopeSprite: {fileID: 0}
-  whineSprite: {fileID: 0}
-  curiousSprite: {fileID: 0}
+  gainSprite: {fileID: 21300000, guid: 909b587512c09ad4d88f9916bc11167d, type: 3}
+  lossSprite: {fileID: 21300000, guid: 1788703b61487a645afcaab14490d0b3, type: 3}
+  hopeSprite: {fileID: 21300000, guid: 21cea9a72db2eed40bec53b3b64375a8, type: 3}
+  whineSprite: {fileID: 21300000, guid: 9b18eebf8c5cf304a83e2221c6ce5493, type: 3}
+  curiousSprite: {fileID: 21300000, guid: d15183455d81b1e4a86a17320566cbdf, type: 3}
 --- !u!1 &1154205658827300966
 GameObject:
   m_ObjectHideFlags: 0
@@ -3183,9 +3184,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerBindedTo: {fileID: 1789945481671495500}
-  bestGirlSprite: {fileID: 21300000, guid: dce19d507aafe104abb7b05966b78cc5, type: 3}
-  bestGirlRemark: I... I'm truly honored... To be held at such high regard by you...
-    I truly am...
+  bestGirlSprite: {fileID: 21300000, guid: f1b673cf26a3b84489b86b78a84dc628, type: 3}
+  bestGirlRemark: I... I'm truly honored... I've never had anyone think of me as someone
+    special before... I'm truly grateful...
   bestGirlName: Yuri
 --- !u!1 &1789945481671495500
 GameObject:
@@ -3320,8 +3321,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerBindedTo: {fileID: 1789945483266281170}
-  bestGirlSprite: {fileID: 21300000, guid: 0abe46cbe98a59243a68114c4fa505dc, type: 3}
-  bestGirlRemark: YAHOO! I'm so glad you picked me! Let's have fun together!
+  bestGirlSprite: {fileID: 21300000, guid: 5e3ffb26479e4d245af29c6ef0b1c678, type: 3}
+  bestGirlRemark: YAHOO! I'm so glad you picked me! I'm sooo excited! We're gonna
+    have lots of fun together, you'll see!
   bestGirlName: Sayori
 --- !u!1 &3340404522615276820
 GameObject:

@@ -12,10 +12,10 @@ public class TowerStack : MonoBehaviour {
 
     void Start () {
         // initialize slot index
-        this.RefreshSlotIndex();
+        this.RefreshSlotIndex ();
         // subscribe block transfers to the drop event
         this.eventBus = this.GetComponent<EventBus> ();
-        this.eventBus.OnTowerDropEvent (this.AttemptBlockTransferFrom);
+        this.eventBus.TowerDropEvent += this.AttemptBlockTransferFrom;
     }
 
     // refreshing slot index by traversing slots from the bottom until empty slot is found
@@ -88,7 +88,7 @@ public class TowerStack : MonoBehaviour {
             newBlock.SetParent (slot);
             newBlock.GetComponent<Block> ().ResetPosition ();
             slotIndex--;
-            this.eventBus.EmitTopBlockGainEvent(this.transform);
+            this.eventBus.EmitTopBlockGainEvent (this.transform);
         }
     }
 
@@ -97,7 +97,7 @@ public class TowerStack : MonoBehaviour {
         if (slotIndex < maxTowerHeight - 1) {
             slotIndex++;
             Transform byeBlock = this.transform.GetChild (slotIndex).Find ("Block");
-            this.eventBus.EmitTopBlockLossEvent(this.transform);
+            this.eventBus.EmitTopBlockLossEvent (this.transform);
             return byeBlock;
         }
         return null;
@@ -106,14 +106,22 @@ public class TowerStack : MonoBehaviour {
     // ADVANCED METHODS -- FUNCTIONS THAT PERFORM MULTIPLE TASKS USING COMPUTED PROPERTIES AND BASIC METHODS
     // examines top block from towerFrom parameter and transfers it to this tower's stack if move is valid
     public void AttemptBlockTransferFrom (Transform towerFrom) {
-        if (towerFrom && towerFrom != this.transform) {
-            TowerStack towerStackFrom = towerFrom.GetComponent<TowerStack> ();
-            Transform topBlock = towerStackFrom.GetTopBlock ();
-
-            if (topBlock && this.CanSupportNewTopBlock (topBlock)) {
-                // block transfer is valid; commence transfer procedure
-                topBlock = towerStackFrom.PopTopBlock ();
-                this.PushTopBlock (topBlock);
+        if (towerFrom) {
+            if (towerFrom != this.transform) {
+                TowerStack towerStackFrom = towerFrom.GetComponent<TowerStack> ();
+                Transform topBlock = towerStackFrom.GetTopBlock ();
+                if (topBlock) {
+                    if (this.CanSupportNewTopBlock (topBlock)) {
+                        // block transfer is valid; commence transfer procedure
+                        topBlock = towerStackFrom.PopTopBlock ();
+                        this.PushTopBlock (topBlock);
+                    } else {
+                        towerFrom.GetComponent<EventBus> ().EmitTopBlockKeepEvent (towerFrom);
+                        this.eventBus.EmitTopBlockMissEvent(this.transform);
+                    }
+                }
+            } else {
+                towerFrom.GetComponent<EventBus> ().EmitTopBlockKeepEvent (towerFrom);
             }
         }
     }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Emotions : MonoBehaviour {
 
     private int maxTowerHeight = GameConstants.maxTowerHeight;
-    public TowerStack towerBindedTo;
+    public Transform towerBindedTo;
 
     public Sprite happySprite;
     public Sprite neutralSprite;
@@ -21,15 +21,11 @@ public class Emotions : MonoBehaviour {
 
     private Sprite defaultEmote;
 
-    private int previousHeight;
-
     private Image image;
     private EventBus eventBus;
 
     void Start () {
         this.image = this.GetComponent<Image> ();
-        this.previousHeight = this.towerBindedTo.GetTowerHeight ();
-        this.previousHeight = -1;
 
         this.eventBus = this.towerBindedTo.GetComponent<EventBus> ();
         this.eventBus.TopBlockGainEvent += HandleGain;
@@ -37,14 +33,15 @@ public class Emotions : MonoBehaviour {
         this.eventBus.EnterWhileDraggingEvent += HandleHope;
         this.eventBus.ExitWhileDraggingEvent += HandleWhine;
         this.eventBus.EnterNoDragEvent += HandleCurious;
-        this.eventBus.ExitNoDragEvent += HandleDefault;
-        this.eventBus.LeftReleaseEvent += HandleGain;
+        // this.eventBus.ExitNoDragEvent += HandleDefault;
+        this.eventBus.TopBlockKeepEvent += HandleKeep;
+        this.eventBus.TopBlockMissEvent += HandleLoss;
 
         this.image.sprite = defaultEmote = sadSprite;
     }
 
-    void RefreshDefaultEmote () {
-        int towerHeight = this.towerBindedTo.GetTowerHeight ();
+    public void RefreshDefaultEmote () {
+        int towerHeight = this.towerBindedTo.GetComponent<TowerStack> ().GetTowerHeight ();
         if (towerHeight <= 1) {
             this.defaultEmote = sadSprite;
         } else if (towerHeight <= 4) {
@@ -57,7 +54,6 @@ public class Emotions : MonoBehaviour {
     }
 
     void HandleGain (Transform tower) {
-        Debug.Log ("YEY! " + gameObject.name + " gained a block!");
         StopAllCoroutines ();
         StartCoroutine (this.EmoteToGain ());
         this.RefreshDefaultEmote ();
@@ -69,7 +65,7 @@ public class Emotions : MonoBehaviour {
     }
 
     void HandleLoss (Transform tower) {
-        Debug.Log ("NOO! " + gameObject.name + " lost a block!");
+        // Debug.Log ("NOO! " + gameObject.name + " lost a block!");
         StopAllCoroutines ();
         StartCoroutine (this.EmoteToLoss ());
         this.RefreshDefaultEmote ();
@@ -82,18 +78,13 @@ public class Emotions : MonoBehaviour {
 
     void HandleHope (Transform tower) {
         StopAllCoroutines ();
-        if (MouseDragTrigger.towerBeingDragged != tower) {
-            Debug.Log ("Ooh! " + gameObject.name + " might get a new block!");
-        } else {
-            Debug.Log ("Phew! " + gameObject.name + " might get to keep her block!");
-        }
         this.image.sprite = hopeSprite;
     }
 
     void HandleWhine (Transform tower) {
         StopAllCoroutines ();
         if (MouseDragTrigger.towerBeingDragged == tower) {
-            Debug.Log ("Oh no! " + gameObject.name + " might lose a block!");
+            // Debug.Log ("Oh no! " + gameObject.name + " might lose a block!");
             this.image.sprite = whineSprite;
         } else {
             this.image.sprite = defaultEmote;
@@ -110,10 +101,7 @@ public class Emotions : MonoBehaviour {
         this.image.sprite = defaultEmote;
     }
 
-    void EmoteToKeep (Transform tower) {
-        Debug.Log ("YEY! " + gameObject.name + " kept a block!");
-        StopAllCoroutines ();
-        StartCoroutine (this.EmoteToGain ());
-        this.RefreshDefaultEmote ();
+    void HandleKeep(Transform tower) {
+        this.HandleGain(tower);
     }
 }

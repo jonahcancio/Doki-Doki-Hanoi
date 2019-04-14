@@ -11,7 +11,8 @@ public class MouseDragTrigger : MonoBehaviour,
 
         public static Transform towerBeingDragged;
         public static Transform towerReadyToDrop;
-        public static Transform towerBelowMouse;
+        public static Transform topBlockBeingDragged;
+        public static Transform towerUnderPointer;
 
         private EventBus eventBus;
 
@@ -37,9 +38,16 @@ public class MouseDragTrigger : MonoBehaviour,
             }
         }
 
+        // called first before onDrop and is called on tower mouse was first pressed regardless of drag
         public void OnPointerUp (PointerEventData eventData) {
             if (eventData.button == PointerEventData.InputButton.Left) {
                 this.eventBus.EmitLeftReleaseEvent (this.transform);
+
+                // if block was dragged around but stays within tower bounds
+                if(topBlockBeingDragged && towerUnderPointer == this.transform && towerBeingDragged == this.transform) {
+                    this.eventBus.EmitTopBlockKeepEvent(this.transform);
+                }
+                topBlockBeingDragged = null;
 
                 towerReadyToDrop = towerBeingDragged;
                 towerBeingDragged = null;
@@ -54,7 +62,7 @@ public class MouseDragTrigger : MonoBehaviour,
         }
 
         public void OnPointerEnter (PointerEventData eventData) {
-            towerBelowMouse = this.transform;
+            towerUnderPointer = this.transform;
             if (towerBeingDragged) {
                 this.eventBus.EmitEnterWhileDraggingEvent (this.transform);
             } else {
@@ -63,6 +71,7 @@ public class MouseDragTrigger : MonoBehaviour,
         }
 
         public void OnPointerExit (PointerEventData eventData) {
+            towerUnderPointer = null;
             if (towerBeingDragged) {
                 this.eventBus.EmitExitWhileDraggingEvent (this.transform);
             }else {

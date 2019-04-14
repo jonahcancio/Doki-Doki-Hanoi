@@ -28,11 +28,11 @@ public class ShadowPooler : MonoBehaviour {
         // subscribe to shadow events
         foreach (Transform tower in this.gameArea) {
             EventBus eventBus = tower.GetComponent<EventBus> ();
-            eventBus.OnEnterWhileDraggingEvent (this.ShowToShadow);
-            eventBus.OnExitWhileDraggingEvent (this.HideToShadow);
-            eventBus.OnLeftReleaseEvent (this.HideToShadow);
-            eventBus.OnLeftPressEvent (this.ShowFromShadow);
-            eventBus.OnLeftReleaseEvent (this.HideFromShadow);
+            eventBus.EnterWhileDraggingEvent  += this.ShowToShadow;
+            eventBus.ExitWhileDraggingEvent += this.HideToShadow;
+            eventBus.LeftReleaseEvent += this.HideToShadow;
+            eventBus.LeftPressEvent += this.ShowFromShadow;
+            eventBus.LeftReleaseEvent += this.HideFromShadow;
         }
     }
 

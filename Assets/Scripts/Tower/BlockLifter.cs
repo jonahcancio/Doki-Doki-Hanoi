@@ -18,17 +18,18 @@ public class BlockLifter : MonoBehaviour {
 
         // subscribe methods to event bus
         this.eventBus = this.GetComponent<EventBus>();
-        this.eventBus.OnLeftDragEvent(this.MoveTopBlockToMouse);
-        this.eventBus.OnLeftReleaseEvent(this.ResetTopBlockPosition);
+        this.eventBus.LeftDragEvent += this.MoveTopBlockToMouse;
+        this.eventBus.LeftReleaseEvent += this.ResetTopBlockPosition;
     }
 
     public void MoveTopBlockToMouse (Vector2 mousePosition) {
         Transform topBlock = this.towerStack.GetTopBlock();
         if (topBlock) {
+            MouseDragTrigger.topBlockBeingDragged = topBlock;
             Vector2 world = this.mainCamera.ScreenToWorldPoint (mousePosition);
-            topBlock.position = new Vector3 (world.x, world.y, mainCanvas.planeDistance);
+            topBlock.position = new Vector3 (world.x, world.y, mainCanvas.planeDistance);            
         } else{
-            Debug.Log("No top block to move to mouse");
+            // Debug.Log("No top block to move to mouse");
         }
     }
 
