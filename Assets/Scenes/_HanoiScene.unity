@@ -212,7 +212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &241203144
 RectTransform:
   m_ObjectHideFlags: 0
@@ -809,7 +809,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Your best girl is Natsuki!
+  m_Text: Your best girl is just Monika
 --- !u!222 &576251657
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1085,7 +1085,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &997511035
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1339,7 +1339,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: It's not like I like you or anything... Baka!
+  m_Text: Did you really think you could escape me? How cute.
 --- !u!222 &1048960715
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1799,7 +1799,6 @@ MonoBehaviour:
       wonderful creators in the ReadMe.md file of this project.
   - emotion: {fileID: 21300000, guid: 91b431ffea6533648b7074559d9a277d, type: 3}
     text: "With that out of the way, let\u2019s start with the game!"
-  isFinishedDialoguing: 0
   nameText: {fileID: 1546586538}
   dialogueText: {fileID: 2029308216}
   hostImage: {fileID: 1548916258}
@@ -1918,6 +1917,11 @@ MonoBehaviour:
   neutralSprite: {fileID: 21300000, guid: 1bc6407ef82016840b1b22944ab20a96, type: 3}
   sadSprite: {fileID: 21300000, guid: 806a7ee5fce0d3f469798050ce63dc42, type: 3}
   glitchedSprite: {fileID: 21300000, guid: 5e8502490947dfe4e91c3ff94e6192bd, type: 3}
+  gainSprite: {fileID: 0}
+  lossSprite: {fileID: 0}
+  hopeSprite: {fileID: 0}
+  whineSprite: {fileID: 0}
+  curiousSprite: {fileID: 0}
 --- !u!114 &1593999248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1930,7 +1934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e59041543da1a594d83995d26936bd15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerBindedTo: {fileID: 3340404522615276825}
+  towerBindedTo: {fileID: 3340404522615276820}
   bestGirlSprite: {fileID: 21300000, guid: c64f40fe4a4fd074aadcdea3eb7a7647, type: 3}
   bestGirlRemark: Don't get the wrong idea! It's not like I like you or anything...
   bestGirlName: Natsuki
@@ -1991,7 +1995,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: c64f40fe4a4fd074aadcdea3eb7a7647, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5e8502490947dfe4e91c3ff94e6192bd, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2227,10 +2231,10 @@ RectTransform:
   m_Father: {fileID: 997511035}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -297.22772}
+  m_SizeDelta: {x: 256.00003, y: 594.45544}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1944471333
 MonoBehaviour:
@@ -2391,16 +2395,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f3333a10274ca4fa1ea3103da0febd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamePhase: 0
+  gamePhase: 1
   introBackground: {fileID: 552165999}
   hostGirl: {fileID: 1548916256}
-  endingPanel: {fileID: 675821224}
   dialogHandler: {fileID: 1548916264}
+  blockPooler: {fileID: 241203143}
   bestGirls:
-  - {fileID: 1593999248}
-  - {fileID: 2537380372077275420}
-  - {fileID: 1154205658827300968}
-  blockPooler: {fileID: 241203145}
+  - {fileID: 1593999242}
+  - {fileID: 1964076627}
+  - {fileID: 1154205658827300966}
+  gameArea: {fileID: 997511034}
+  endingPanel: {fileID: 675821224}
 --- !u!114 &1948274928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2562,6 +2567,11 @@ MonoBehaviour:
   neutralSprite: {fileID: 21300000, guid: 089b6fcee65509d4899dae9adc54cd71, type: 3}
   sadSprite: {fileID: 21300000, guid: dc8fd70938f942040adde0b308ffd838, type: 3}
   glitchedSprite: {fileID: 21300000, guid: 5e8502490947dfe4e91c3ff94e6192bd, type: 3}
+  gainSprite: {fileID: 21300000, guid: 0abe46cbe98a59243a68114c4fa505dc, type: 3}
+  lossSprite: {fileID: 21300000, guid: 1dc32baa263986f47abacbef61b6075f, type: 3}
+  hopeSprite: {fileID: 21300000, guid: 089b6fcee65509d4899dae9adc54cd71, type: 3}
+  whineSprite: {fileID: 21300000, guid: d10ef27585b02b845bb0229e0ad64e53, type: 3}
+  curiousSprite: {fileID: 21300000, guid: 9d05b9a137113ad42be5a0d43b80a64f, type: 3}
 --- !u!114 &1964076630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2745,11 +2755,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.8962264, g: 0.8962264, b: 0.8962264, a: 1}
-    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_PressedColor: {r: 0.7075472, g: 0.7075472, b: 0.7075472, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.7490196}
+    m_HighlightedColor: {r: 0.990566, g: 0.80833924, b: 0.80833924, a: 1}
+    m_PressedColor: {r: 0.754717, g: 0.6799573, b: 0.6799573, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 2.8
+    m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
@@ -2775,7 +2785,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2028186086
@@ -2975,6 +2985,11 @@ MonoBehaviour:
   neutralSprite: {fileID: 21300000, guid: 5e8502490947dfe4e91c3ff94e6192bd, type: 3}
   sadSprite: {fileID: 21300000, guid: 5e8502490947dfe4e91c3ff94e6192bd, type: 3}
   glitchedSprite: {fileID: 21300000, guid: 5e8502490947dfe4e91c3ff94e6192bd, type: 3}
+  gainSprite: {fileID: 0}
+  lossSprite: {fileID: 0}
+  hopeSprite: {fileID: 0}
+  whineSprite: {fileID: 0}
+  curiousSprite: {fileID: 0}
 --- !u!114 &1154205657852887531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3109,6 +3124,11 @@ MonoBehaviour:
   neutralSprite: {fileID: 21300000, guid: 948f742b61ad9474f8dd64a5f12d810b, type: 3}
   sadSprite: {fileID: 21300000, guid: f58a53bc57f1ab341b4acaf00012f4e0, type: 3}
   glitchedSprite: {fileID: 21300000, guid: 5e8502490947dfe4e91c3ff94e6192bd, type: 3}
+  gainSprite: {fileID: 0}
+  lossSprite: {fileID: 0}
+  hopeSprite: {fileID: 0}
+  whineSprite: {fileID: 0}
+  curiousSprite: {fileID: 0}
 --- !u!1 &1154205658827300966
 GameObject:
   m_ObjectHideFlags: 0
@@ -3162,10 +3182,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e59041543da1a594d83995d26936bd15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerBindedTo: {fileID: 1789945481671495505}
+  towerBindedTo: {fileID: 1789945481671495500}
   bestGirlSprite: {fileID: 21300000, guid: dce19d507aafe104abb7b05966b78cc5, type: 3}
-  bestGirlRemark: I don't know if I deserve such high regard from you. But if you
-    insist...
+  bestGirlRemark: I... I'm truly honored... To be held at such high regard by you...
+    I truly am...
   bestGirlName: Yuri
 --- !u!1 &1789945481671495500
 GameObject:
@@ -3299,7 +3319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e59041543da1a594d83995d26936bd15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerBindedTo: {fileID: 1789945483266281175}
+  towerBindedTo: {fileID: 1789945483266281170}
   bestGirlSprite: {fileID: 21300000, guid: 0abe46cbe98a59243a68114c4fa505dc, type: 3}
   bestGirlRemark: YAHOO! I'm so glad you picked me! Let's have fun together!
   bestGirlName: Sayori
@@ -3446,10 +3466,10 @@ RectTransform:
   m_Father: {fileID: 997511035}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 768.0001, y: -297.22772}
+  m_SizeDelta: {x: 256.00003, y: 594.45544}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!224 &6402938369853916126
 RectTransform:
@@ -3465,10 +3485,10 @@ RectTransform:
   m_Father: {fileID: 997511035}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 512.00006, y: -297.22772}
+  m_SizeDelta: {x: 256.00003, y: 594.45544}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &6633246996821085336
 MonoBehaviour:
@@ -3581,10 +3601,10 @@ RectTransform:
   m_Father: {fileID: 997511035}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 256.00003, y: -297.22772}
+  m_SizeDelta: {x: 256.00003, y: 594.45544}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &8105198114968236233
 MonoBehaviour:

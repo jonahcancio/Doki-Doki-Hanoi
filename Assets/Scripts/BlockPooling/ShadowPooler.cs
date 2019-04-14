@@ -30,13 +30,14 @@ public class ShadowPooler : MonoBehaviour {
             EventBus eventBus = tower.GetComponent<EventBus> ();
             eventBus.OnEnterWhileDraggingEvent (this.ShowToShadow);
             eventBus.OnExitWhileDraggingEvent (this.HideToShadow);
-            eventBus.OnLeftMouseReleaseEvent (this.HideToShadow);
+            eventBus.OnLeftReleaseEvent (this.HideToShadow);
             eventBus.OnLeftPressEvent (this.ShowFromShadow);
-            eventBus.OnLeftMouseReleaseEvent (this.HideFromShadow);
+            eventBus.OnLeftReleaseEvent (this.HideFromShadow);
         }
     }
 
-    void ShowToShadow (Transform toTower, Transform fromTower) {
+    void ShowToShadow (Transform toTower) {
+        Transform fromTower = MouseDragTrigger.towerBeingDragged;
         if (toTower != fromTower) {
             Transform fromBlock = fromTower.GetComponent<TowerStack> ().GetTopBlock ();
             if (fromBlock) {
@@ -64,7 +65,7 @@ public class ShadowPooler : MonoBehaviour {
         }
     }
 
-    void HideToShadow () {
+    void HideToShadow (Transform fromTower) {
         this.toShadow.transform.SetParent (this.transform);
         this.toShadow.GetComponent<Block> ().ResetPosition ();
         this.toShadow.SetActive (false);
@@ -91,7 +92,7 @@ public class ShadowPooler : MonoBehaviour {
 
     }
 
-    void HideFromShadow () {
+    void HideFromShadow (Transform fromShadow) {
         this.fromShadow.transform.SetParent (this.transform);
         this.fromShadow.GetComponent<Block> ().ResetPosition ();
         this.fromShadow.SetActive (false);

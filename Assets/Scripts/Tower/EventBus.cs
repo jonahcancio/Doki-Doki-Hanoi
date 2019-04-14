@@ -7,38 +7,40 @@ public class EventBus : MonoBehaviour {
 
     private int maxTowerHeight = GameConstants.maxTowerHeight;
 
-    public Action<Vector2> LeftMouseDragEvent;
-    public Action LeftMouseReleaseEvent;
-    public Action<Transform> TowerDropEvent;
-    public Action<Transform> MiddleClickEvent;
-    public Action<Vector2> MiddleClickMouseEvent;
-    public Action RightClickEvent;
-    public Action<Vector2> RightClickMouseEvent;
+    public Action<Vector2> LeftDragEvent;
+    // Binding methods for LeftDragEvent
+    public void EmitLeftDragEvent (Vector2 mousePosition) {
+        if (this.LeftDragEvent != null) {
+            this.LeftDragEvent (mousePosition);
+        }
+    }
+    public void OnLeftDragEvent (Action<Vector2> callback) {
+        this.LeftDragEvent += callback;
+    }
 
-    public Action<Transform, Transform> EnterWhileDraggingEvent;
-    public Action ExitWhileDraggingEvent;
     public Action<Transform> LeftPressEvent;
-
-    // Binding methods for LeftMouseDragEvent
-    public void EmitLeftMouseDragEvent (Vector2 mousePosition) {
-        if (this.LeftMouseDragEvent != null) {
-            this.LeftMouseDragEvent (mousePosition);
+    // Binding methods for LeftPress
+    public void EmitLeftPressEvent (Transform towerPressed) {
+        if (this.LeftPressEvent != null) {
+            this.LeftPressEvent (towerPressed);
         }
     }
-    public void OnLeftMouseDragEvent (Action<Vector2> callback) {
-        this.LeftMouseDragEvent += callback;
+    public void OnLeftPressEvent (Action<Transform> callback) {
+        this.LeftPressEvent += callback;
     }
 
-    // Binding methods for LeftMouseReleaseEvent
-    public void EmitLeftMouseReleaseEvent () {
-        if (this.LeftMouseReleaseEvent != null) {
-            this.LeftMouseReleaseEvent ();
+    public Action<Transform> LeftReleaseEvent;
+    // Binding methods for LeftReleaseEvent
+    public void EmitLeftReleaseEvent (Transform fromTower) {
+        if (this.LeftReleaseEvent != null) {
+            this.LeftReleaseEvent (fromTower);
         }
     }
-    public void OnLeftMouseReleaseEvent (Action callback) {
-        this.LeftMouseReleaseEvent += callback;
+    public void OnLeftReleaseEvent (Action<Transform> callback) {
+        this.LeftReleaseEvent += callback;
     }
 
+    public Action<Transform> TowerDropEvent;
     // Binding methods for TowerDropEvent
     public void EmitTowerDropEvent (Transform towerFrom) {
         if (this.TowerDropEvent != null) {
@@ -49,6 +51,7 @@ public class EventBus : MonoBehaviour {
         this.TowerDropEvent += callback;
     }
 
+    public Action<Transform> MiddleClickEvent;
     // Binding methods for MiddleClickEvent
     public void EmitMiddleClickEvent (Transform towerClicked) {
         if (this.MiddleClickEvent != null) {
@@ -59,6 +62,7 @@ public class EventBus : MonoBehaviour {
         this.MiddleClickEvent += callback;
     }
 
+    public Action RightClickEvent;
     // Binding methods for RightClickEvent
     public void EmitRightClickEvent () {
         if (this.RightClickEvent != null) {
@@ -69,36 +73,54 @@ public class EventBus : MonoBehaviour {
         this.RightClickEvent += callback;
     }
 
-    public void EmitEnterWhileDraggingEvent (Transform toTower, Transform fromTower) {
+    public Action<Transform> EnterWhileDraggingEvent;
+    // Binding methods for EnterWhileDragging
+    public void EmitEnterWhileDraggingEvent (Transform toTower) {
         if (this.EnterWhileDraggingEvent != null) {
-            this.EnterWhileDraggingEvent (toTower, fromTower);
+            this.EnterWhileDraggingEvent (toTower);
         }
     }
-    public void OnEnterWhileDraggingEvent (Action<Transform, Transform> callback) {
+    public void OnEnterWhileDraggingEvent (Action<Transform> callback) {
         this.EnterWhileDraggingEvent += callback;
     }
 
-    public void EmitExitWhileDraggingEvent () {
+    public Action<Transform> ExitWhileDraggingEvent;
+    // Binding methods for ExitWhileDragging
+    public void EmitExitWhileDraggingEvent (Transform fromTower) {
         if (this.ExitWhileDraggingEvent != null) {
-            this.ExitWhileDraggingEvent ();
+            this.ExitWhileDraggingEvent (fromTower);
         }
     }
-    public void OnExitWhileDraggingEvent (Action callback) {
+    public void OnExitWhileDraggingEvent (Action<Transform> callback) {
         this.ExitWhileDraggingEvent += callback;
     }
 
-    public void EmitLeftPressEvent (Transform towerPressed) {
-        if (this.LeftPressEvent != null) {
-            this.LeftPressEvent (towerPressed);
+    public Action<Transform> TopBlockGainEvent;
+    public void EmitTopBlockGainEvent (Transform gainedTower) {
+        if (this.TopBlockGainEvent != null) {
+            this.TopBlockGainEvent (gainedTower);
         }
     }
-    public void OnLeftPressEvent (Action<Transform> callback) {
-        this.LeftPressEvent += callback;
+
+    public Action<Transform> TopBlockLossEvent;
+    public void EmitTopBlockLossEvent (Transform lostTower) {
+        if (this.TopBlockLossEvent != null) {
+            this.TopBlockLossEvent (lostTower);
+        }
     }
 
-    // public void EmitMiddleClickMouseEvent (Vector2 mousePosition) {
-    //     if (this.MiddleClickEvent != null) {
-    //         this.MiddleClickEvent (mousePosition);
-    //     }
-    // }
+    public Action<Transform> EnterNoDragEvent;
+    public void EmitEnterNoDragEvent (Transform hoveredTower) {
+        if (this.EnterNoDragEvent != null) {
+            this.EnterNoDragEvent (hoveredTower);
+        }
+    }
+
+    public Action<Transform> ExitNoDragEvent;
+    public void EmitExitNoDragEvent (Transform exitedTower) {
+        if (this.ExitNoDragEvent != null) {
+            this.ExitNoDragEvent (exitedTower);
+        }
+    }
+
 }

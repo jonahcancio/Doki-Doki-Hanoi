@@ -46,14 +46,4 @@ public class Block : MonoBehaviour {
     public void SetColor (Color color) {
         this.image.color = color;
     }
-
-    // public void Shadowize() {
-    //     Shader guiTextShader = Shader.Find("GUI/Text Shader");
-    //     this.image.material.shader = guiTextShader;        
-    // }
-
-    // public void Deshadowize() {
-    //     Shader spriteDefault = Shader.Find("Sprites/Default");
-    //     this.image.material.shader = spriteDefault;    
-    // }
 }

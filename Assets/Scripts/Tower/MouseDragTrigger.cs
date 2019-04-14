@@ -26,20 +26,20 @@ public class MouseDragTrigger : MonoBehaviour,
             if (eventData.button == PointerEventData.InputButton.Left) {
                 this.eventBus.EmitLeftPressEvent (this.transform);
 
-                this.eventBus.EmitLeftMouseDragEvent (eventData.position);
+                this.eventBus.EmitLeftDragEvent (eventData.position);
                 towerBeingDragged = this.transform;
             }
         }
 
         public void OnDrag (PointerEventData eventData) {
             if (eventData.button == PointerEventData.InputButton.Left) {
-                this.eventBus.EmitLeftMouseDragEvent (eventData.position);
+                this.eventBus.EmitLeftDragEvent (eventData.position);
             }
         }
 
         public void OnPointerUp (PointerEventData eventData) {
             if (eventData.button == PointerEventData.InputButton.Left) {
-                this.eventBus.EmitLeftMouseReleaseEvent ();
+                this.eventBus.EmitLeftReleaseEvent (this.transform);
 
                 towerReadyToDrop = towerBeingDragged;
                 towerBeingDragged = null;
@@ -56,13 +56,17 @@ public class MouseDragTrigger : MonoBehaviour,
         public void OnPointerEnter (PointerEventData eventData) {
             towerBelowMouse = this.transform;
             if (towerBeingDragged) {
-                this.eventBus.EmitEnterWhileDraggingEvent (this.transform, towerBeingDragged);
+                this.eventBus.EmitEnterWhileDraggingEvent (this.transform);
+            } else {
+                this.eventBus.EmitEnterNoDragEvent(this.transform);
             }
         }
 
         public void OnPointerExit (PointerEventData eventData) {
             if (towerBeingDragged) {
-                this.eventBus.EmitExitWhileDraggingEvent ();
+                this.eventBus.EmitExitWhileDraggingEvent (this.transform);
+            }else {
+                this.eventBus.EmitExitNoDragEvent(this.transform);
             }
         }
 

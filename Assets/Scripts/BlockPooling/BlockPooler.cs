@@ -48,6 +48,7 @@ public class BlockPooler : MonoBehaviour {
             initialTower = GameObject.FindWithTag ("InitialTower").transform;
         }
 
+        // add blocks to initial tower
         ResetBlocksToInitialTower ();
 
         // subscribe chop and grow tower events to middle and right mouse clicks
@@ -58,17 +59,7 @@ public class BlockPooler : MonoBehaviour {
         }
     }
 
-    public static void PushBackToPool (GameObject block) {
-        block.SetActive (false);
-        pooledBlocks.Push (block);
-    }
-
-    public static GameObject PopOutFromPool () {
-        GameObject block = pooledBlocks.Pop ();
-        block.SetActive (true);
-        return block;
-    }
-
+    // run through each tower and return the one with the biggest tower block
     Transform GetTowerToChop () {
         Transform maxTower = this.gameArea.GetChild (0);
         foreach (Transform tower in this.gameArea) {
@@ -81,6 +72,7 @@ public class BlockPooler : MonoBehaviour {
         return maxTower;
     }
 
+    // chop the tower with the bigges tower block
     public void ChopTower () {
         if (pooledBlocks.Count >= maxTowerHeight) {
             Debug.Log ("Block pool is full! What are you trying to chop");
@@ -98,7 +90,8 @@ public class BlockPooler : MonoBehaviour {
         }
     }
 
-    public void GrowTower (Transform towerToGrow) {
+    // grow the initial tower
+    public void GrowTower (Transform towerClicked) {
         if (pooledBlocks.Count <= 0) {
             Debug.Log ("No more pooled blocks left");
         } else {
@@ -106,16 +99,19 @@ public class BlockPooler : MonoBehaviour {
             GameObject block = pooledBlocks.Pop ();
             block.SetActive (true);
 
-            // use tower logic to grow tower
-            // towerToGrow.GetComponent<TowerStack> ().GrowTowerFromBelow (block.transform);
+            // grow tower stack
             initialTower.GetComponent<TowerStack> ().GrowTowerFromBelow (block.transform);
         }
     }
 
+    // reset all blocks of the tower back to initial game state
+    // called by controller upon game reset
     public void ResetBlocksToInitialTower () {
+        // return all blocks back to pool
         while (pooledBlocks.Count < maxTowerHeight) {
             this.ChopTower ();
         }
+        // add initial blocks to intial tower's stack
         for (int i = 0; i < initialBlockCount; i++) {
             this.GrowTower (null);
         }

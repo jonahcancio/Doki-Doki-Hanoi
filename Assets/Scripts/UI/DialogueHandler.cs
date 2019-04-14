@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,7 +14,6 @@ public class DialogueHandler : MonoBehaviour, IPointerClickHandler {
 
     // messages to be displayed
     public Message[] messages;
-    public bool isFinishedDialoguing;
 
     // index used to traverse messages array
     private int messageIndex;
@@ -23,35 +23,42 @@ public class DialogueHandler : MonoBehaviour, IPointerClickHandler {
     public Text dialogueText;
     public Image hostImage;
     
-    // saved triggers and defaults
+    // host girl's default emotion
     private Sprite defaultEmotion;
+    // whether or not typing is ongoing
     private bool isTyping;
+    // whether or not dialogue is ongoing
     private bool isDialoguing;
     
+    // coroutine that types each message letter by letter
     private IEnumerator typingCoroutine;
 
-
-
     void Start () {
-        this.isFinishedDialoguing = false;
+        // start with host girl's default emotion
         this.defaultEmotion = this.hostImage.sprite;
         this.StartDialogue ();        
     }
 
     public void StartDialogue () {
+        // initialize dialogue fields
         this.messageIndex = -1;
         this.isDialoguing = true;
         this.isTyping = false;
         this.nameText.text = this.hostName;
+        // display first message
         this.DisplayNextMessage ();
     }
 
+    // displays the next message in the messages array
     public void DisplayNextMessage () {
         this.messageIndex++;
         if (this.messageIndex >= this.messages.Length) {
+            // end dialogue if end of messages list reached
             this.EndDialogue ();
             return;
         }
+
+        // begin typing the message letter by letter
         this.typingCoroutine = TypeMessageByChar();
         StartCoroutine (this.typingCoroutine);
         Sprite sprite = this.messages[messageIndex].emotion;
@@ -62,12 +69,14 @@ public class DialogueHandler : MonoBehaviour, IPointerClickHandler {
         this.hostImage.sprite = this.messages[messageIndex].emotion;
     }
 
+    // immediately finish typing the message
     public void FinishTypingMessage () {
         StopCoroutine (this.typingCoroutine);
         this.dialogueText.text = this.messages[messageIndex].text;
         this.isTyping = false;
     }
 
+    // coroutine for typing message letter by letter
     IEnumerator TypeMessageByChar () {
         this.isTyping = true;
         this.dialogueText.text = "";
@@ -79,18 +88,28 @@ public class DialogueHandler : MonoBehaviour, IPointerClickHandler {
         this.isTyping = false;
     }
 
+    // end dialogue
     void EndDialogue () {
+        // end dialogue fields
         this.isDialoguing = false;
         this.nameText.text = this.defaultHeader;
         this.dialogueText.text = this.defaultInstructions;
-        // GameController gameController = FindObjectOfType<GameController> ();
-        // if (gameController) {
-        //     gameController.TransitionToGame ();
-        // }
-        this.isFinishedDialoguing = true;
+
+        // emit dialogue finished
+        this.EmitDialogueFinishedEvent();
     }
 
+    // dialogue event that game controller has subscribed to
+    public Action DialogueFinishedEvent;
+    void EmitDialogueFinishedEvent() {
+        if(this.DialogueFinishedEvent != null) {
+            this.DialogueFinishedEvent();
+        }
+    }
+
+    // click sensor for progressing dialogue
     public void OnPointerClick (PointerEventData eventData) {
+        // only detect left clicks
         if (eventData.button == PointerEventData.InputButton.Left) {
             if (!this.isDialoguing) {
                 this.StartDialogue ();

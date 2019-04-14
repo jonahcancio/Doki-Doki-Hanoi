@@ -88,6 +88,7 @@ public class TowerStack : MonoBehaviour {
             newBlock.SetParent (slot);
             newBlock.GetComponent<Block> ().ResetPosition ();
             slotIndex--;
+            this.eventBus.EmitTopBlockGainEvent(this.transform);
         }
     }
 
@@ -96,6 +97,7 @@ public class TowerStack : MonoBehaviour {
         if (slotIndex < maxTowerHeight - 1) {
             slotIndex++;
             Transform byeBlock = this.transform.GetChild (slotIndex).Find ("Block");
+            this.eventBus.EmitTopBlockLossEvent(this.transform);
             return byeBlock;
         }
         return null;

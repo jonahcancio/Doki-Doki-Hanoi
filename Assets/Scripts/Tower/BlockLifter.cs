@@ -18,8 +18,8 @@ public class BlockLifter : MonoBehaviour {
 
         // subscribe methods to event bus
         this.eventBus = this.GetComponent<EventBus>();
-        this.eventBus.OnLeftMouseDragEvent(this.MoveTopBlockToMouse);
-        this.eventBus.OnLeftMouseReleaseEvent(this.ResetTopBlockPosition);
+        this.eventBus.OnLeftDragEvent(this.MoveTopBlockToMouse);
+        this.eventBus.OnLeftReleaseEvent(this.ResetTopBlockPosition);
     }
 
     public void MoveTopBlockToMouse (Vector2 mousePosition) {
@@ -32,7 +32,7 @@ public class BlockLifter : MonoBehaviour {
         }
     }
 
-    public void ResetTopBlockPosition() {
+    public void ResetTopBlockPosition(Transform fromTower) {
         Transform topBlock = this.towerStack.GetTopBlock();
         if (topBlock) {
             topBlock.GetComponent<Block> ().ResetPosition ();

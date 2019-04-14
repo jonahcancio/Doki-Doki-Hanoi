@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// used to edit text and sprite in the ending
 public class EndingHandler : MonoBehaviour {
 
     public Text bestGirlRemark;
@@ -20,5 +21,4 @@ public class EndingHandler : MonoBehaviour {
     public void SetBestGirlSprite(Sprite sprite) {
         this.bestGirlImage.sprite = sprite;
     }
-
 }
