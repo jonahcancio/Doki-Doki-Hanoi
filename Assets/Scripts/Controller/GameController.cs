@@ -9,26 +9,29 @@ public class GameController : MonoBehaviour {
         Intro,
         Game,
         Ending
-        };
-        [SerializeField]
-        private GamePhase gamePhase;
+    };
 
-        // fields used by the intro phase
-        public GameObject introBackground;
-        public GameObject hostGirl;
-        public DialogueHandler dialogHandler;
+    public static int heightToWin = GameConstants.defaultHeightToWin;
 
-        // fields used by the game phase
-        public GameObject blockPooler;
-        public GameObject[] bestGirls;
-        public GameObject gameArea;
-        public EventBus[] eventBuses;
-        public Text blocksToWin;
+    [SerializeField]
+    private GamePhase gamePhase;
 
-        // fields used by the ending phase
-        public GameObject endingPanel;
+    // fields used by the intro phase
+    public GameObject introBackground;
+    public GameObject hostGirl;
+    public DialogueHandler dialogHandler;
 
-        void OnEnable () {
+    // fields used by the game phase
+    public GameObject blockPooler;
+    public GameObject[] bestGirls;
+    public GameObject gameArea;
+    public EventBus[] eventBuses;
+    public Text blocksToWin;
+
+    // fields used by the ending phase
+    public GameObject endingPanel;
+
+    void OnEnable () {
         if (this.gamePhase == GamePhase.Intro) {
         // start game phase at intro
         this.TransitionToIntro ();
@@ -36,7 +39,7 @@ public class GameController : MonoBehaviour {
         // start game phase at game
         this.TransitionToGame ();
         } else {
-        // start game pgase at ending
+        // start game phase at ending
         this.TransitionToEnding (null);
         }
     }
@@ -54,7 +57,6 @@ public class GameController : MonoBehaviour {
         BlockPooler blockPooler = this.blockPooler.GetComponent<BlockPooler> ();
         blockPooler.TowerGrowEvent += this.RefreshWinObjective;
         blockPooler.TowerChopEvent += this.RefreshWinObjective;
-
     }
 
     // set up scene for intro
@@ -101,6 +103,7 @@ public class GameController : MonoBehaviour {
             Emotions girlEmotions = girl.GetComponent<Emotions> ();
             girlEmotions.RefreshDefaultEmote ();
         }
+        this.RefreshWinObjective(null);
         this.gamePhase = GamePhase.Game;
     }
 
@@ -108,10 +111,10 @@ public class GameController : MonoBehaviour {
     // called whenever keys are added or removed from the block pooler
     public void RefreshWinObjective (Transform towerClicked) {
         int blocksInPlay = this.blockPooler.GetComponent<BlockPooler> ().GetBlocksInPlay ();
-        int winObjective = Mathf.Clamp (blocksInPlay, 5, 8);
+        int winObjective = Mathf.Clamp (blocksInPlay, 1, GameConstants.maxTowerHeight);
+        heightToWin = winObjective;
         foreach (GameObject girl in bestGirls) {
-            WinCatcher girlWC = girl.GetComponent<WinCatcher> ();
-            girlWC.heightToWin = winObjective;
+            WinCatcher girlWC = girl.GetComponent<WinCatcher> ();           
             girlWC.CheckIfBestGirl (null);
         }
         blocksToWin.text = "Keys Needed To Win: " + winObjective;

@@ -90,7 +90,12 @@ public class BlockPooler : MonoBehaviour {
             block.SetParent (this.transform);
             block.gameObject.SetActive (false);
             this.pooledBlocks.Push (block.gameObject);
-            this.EmitTowerChopEvent(towerToChop);
+
+            // detect if tower chop is from reset or mouseclick; towerClicked == null if on reset
+            if(towerClicked != null) {
+                // only emit event if tower chop was due to mouse click
+                this.EmitTowerChopEvent(towerToChop);
+            }
         }
     }
 

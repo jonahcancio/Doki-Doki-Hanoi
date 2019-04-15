@@ -2019,7 +2019,7 @@ MonoBehaviour:
   - emotion: {fileID: 21300000, guid: 634654ae4067464409bcbf60dfd7b984, type: 3}
     text: "If you\u2019ve never played Tower of Hanoi before, the rules are simple."
   - emotion: {fileID: 21300000, guid: 634654ae4067464409bcbf60dfd7b984, type: 3}
-    text: You need move a stack of blocks from one tower to another.
+    text: You need to move a stack of blocks from one tower to another.
   - emotion: {fileID: 21300000, guid: 25dfdc8e491bbb34fbc373db11525b89, type: 3}
     text: The key element of this game is that bigger blocks cannot be placed on top
       of smaller blocks.
@@ -2186,7 +2186,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e59041543da1a594d83995d26936bd15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heightToWin: 5
   towerBindedTo: {fileID: 3340404522615276820}
   bestGirlSprite: {fileID: 21300000, guid: 6c0a324c659856e489f42f7d1c98cc50, type: 3}
   bestGirlRemark: I knew you'd make the right choice. But don't get the wrong idea,
@@ -3443,7 +3442,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e59041543da1a594d83995d26936bd15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heightToWin: 5
   towerBindedTo: {fileID: 1789945481671495500}
   bestGirlSprite: {fileID: 21300000, guid: f1b673cf26a3b84489b86b78a84dc628, type: 3}
   bestGirlRemark: I... I'm truly honored... I've never had anyone think of me as someone
@@ -3581,7 +3579,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e59041543da1a594d83995d26936bd15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heightToWin: 5
   towerBindedTo: {fileID: 1789945483266281170}
   bestGirlSprite: {fileID: 21300000, guid: 5e3ffb26479e4d245af29c6ef0b1c678, type: 3}
   bestGirlRemark: YAHOO! I'm so glad you picked me! I'm sooo excited! We're gonna
