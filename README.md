@@ -18,3 +18,5 @@ All the other images and audio clips belong to their respective owners below.
     *  Text Box: https://ddlcsprites.tumblr.com/post/167774447655/doki-doki-literature-club-sprites-text-boxes
 3. Music: 
     * OK Everyone: https://www.youtube.com/watch?v=Hh2e9_bGSys
+4. Font: 
+    * Deja Vu Sans: https://www.fontsquirrel.com/fonts/dejavu-sans
