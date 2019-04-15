@@ -84,7 +84,7 @@ public class MouseDragTrigger : MonoBehaviour,
                 if (eventData.button == PointerEventData.InputButton.Middle) {
                     this.eventBus.EmitMiddleClickEvent (this.transform);
                 } else if (eventData.button == PointerEventData.InputButton.Right) {
-                    this.eventBus.EmitRightClickEvent ();
+                    this.eventBus.EmitRightClickEvent (this.transform);
                 }
             }
         }

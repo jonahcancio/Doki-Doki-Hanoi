@@ -31,8 +31,12 @@ public class Block : MonoBehaviour {
         this.transform.localPosition = this.originalLocalPosition;
     }
 
+    // scales block size proportionally to block num
     public void SetSizeToBlockNum () {
         RectTransform rectTransform = GetComponent<RectTransform> ();
+        // maintain position at zero
+        rectTransform.anchoredPosition = Vector2.zero;
+        // scale block to block num
         Vector2 sizeDelta = rectTransform.sizeDelta;
         sizeDelta.x = minBlockSize * this.blockNum;
         rectTransform.sizeDelta = sizeDelta;

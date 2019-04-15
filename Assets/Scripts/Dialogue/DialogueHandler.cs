@@ -22,21 +22,23 @@ public class DialogueHandler : MonoBehaviour, IPointerClickHandler {
     public Text nameText;
     public Text dialogueText;
     public Image hostImage;
-    
+    public GameObject dokiDokey;
+
     // host girl's default emotion
     private Sprite defaultEmotion;
     // whether or not typing is ongoing
     private bool isTyping;
     // whether or not dialogue is ongoing
     private bool isDialoguing;
-    
+
     // coroutine that types each message letter by letter
     private IEnumerator typingCoroutine;
 
     void Start () {
         // start with host girl's default emotion
         this.defaultEmotion = this.hostImage.sprite;
-        this.StartDialogue ();        
+
+        this.StartDialogue ();
     }
 
     public void StartDialogue () {
@@ -45,6 +47,7 @@ public class DialogueHandler : MonoBehaviour, IPointerClickHandler {
         this.isDialoguing = true;
         this.isTyping = false;
         this.nameText.text = this.hostName;
+
         // display first message
         this.DisplayNextMessage ();
     }
@@ -58,15 +61,25 @@ public class DialogueHandler : MonoBehaviour, IPointerClickHandler {
             return;
         }
 
+        this.ShowHideReferenceImages();
+
         // begin typing the message letter by letter
-        this.typingCoroutine = TypeMessageByChar();
+        this.typingCoroutine = TypeMessageByChar ();
         StartCoroutine (this.typingCoroutine);
         Sprite sprite = this.messages[messageIndex].emotion;
         if (!sprite) {
-             this.hostImage.sprite = this.defaultEmotion;
-             return;
+            this.hostImage.sprite = this.defaultEmotion;
+            return;
         }
         this.hostImage.sprite = this.messages[messageIndex].emotion;
+    }
+
+    public void ShowHideReferenceImages () {
+        if (this.messageIndex >= 16 && this.messageIndex <= 17) {
+            this.dokiDokey.SetActive (true);
+        } else {
+            this.dokiDokey.SetActive (false);
+        }
     }
 
     // immediately finish typing the message
@@ -96,20 +109,20 @@ public class DialogueHandler : MonoBehaviour, IPointerClickHandler {
         this.dialogueText.text = this.defaultInstructions;
 
         // emit dialogue finished
-        this.EmitDialogueFinishedEvent();
+        this.EmitDialogueFinishedEvent ();
     }
 
     // dialogue event that game controller has subscribed to
     public Action DialogueFinishedEvent;
-    void EmitDialogueFinishedEvent() {
-        if(this.DialogueFinishedEvent != null) {
-            this.DialogueFinishedEvent();
+    void EmitDialogueFinishedEvent () {
+        if (this.DialogueFinishedEvent != null) {
+            this.DialogueFinishedEvent ();
         }
     }
 
     // click sensor for progressing dialogue
     public void OnPointerClick (PointerEventData eventData) {
-        // only detect left clicks
+        // detect left clicks for next page
         if (eventData.button == PointerEventData.InputButton.Left) {
             if (!this.isDialoguing) {
                 this.StartDialogue ();
@@ -117,9 +130,13 @@ public class DialogueHandler : MonoBehaviour, IPointerClickHandler {
                 if (this.isTyping) {
                     this.FinishTypingMessage ();
                 } else {
-                    this.DisplayNextMessage();
+                    this.DisplayNextMessage ();
                 }
             }
-        }
+        } else if (eventData.button == PointerEventData.InputButton.Right) {
+            if (this.isDialoguing) {
+                this.EndDialogue ();
+            } 
+        }   
     }
 }

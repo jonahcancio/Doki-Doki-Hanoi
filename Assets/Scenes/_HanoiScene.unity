@@ -112,6 +112,123 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &55981200
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 55981201}
+  - component: {fileID: 55981205}
+  - component: {fileID: 55981204}
+  - component: {fileID: 55981203}
+  - component: {fileID: 55981202}
+  m_Layer: 5
+  m_Name: TopRightText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &55981201
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55981200}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1213365706}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -20, y: -5}
+  m_SizeDelta: {x: 496.8, y: 49.2}
+  m_Pivot: {x: 1, y: 1}
+--- !u!223 &55981202
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55981200}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: -1795022101
+  m_SortingOrder: 4
+  m_TargetDisplay: 0
+--- !u!114 &55981203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55981200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 2, y: -2}
+  m_UseGraphicAlpha: 1
+--- !u!114 &55981204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55981200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 2ab7f4a1e9d22cd488d861ab926350a6, type: 3}
+    m_FontSize: 32
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 232
+    m_Alignment: 5
+    m_AlignByGeometry: 0
+    m_RichText: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Right click to skip intro
+--- !u!222 &55981205
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55981200}
+  m_CullTransparentMesh: 0
 --- !u!1 &137973655
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,7 +329,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &241203144
 RectTransform:
   m_ObjectHideFlags: 0
@@ -244,7 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 716c798acc2b0834fa81ee978c8f1552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockPrefab: {fileID: 2630542162487315140, guid: 57edd8870af54b047bf00f9a126cdd2c,
+  blockPrefab: {fileID: 1195066275446851276, guid: 5a870e3cda197424bb78fe556b0b7d7f,
     type: 3}
   slotPrefab: {fileID: 5498338510532774741, guid: 4652389721a2d90428943c7fb52679bc,
     type: 3}
@@ -270,7 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d47beb2af4adae499e86415466edf4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockPrefab: {fileID: 4227642367135143745, guid: d9d41a35c317eb64db7803b3ac2f1c5e,
+  blockPrefab: {fileID: 2408449385206482056, guid: 556cb957d1021714d87be7002c9f3394,
     type: 3}
 --- !u!1 &419414250
 GameObject:
@@ -645,7 +762,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &552166000
 RectTransform:
   m_ObjectHideFlags: 0
@@ -818,6 +935,102 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 576251653}
   m_CullTransparentMesh: 0
+--- !u!1 &637661801
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 637661802}
+  - component: {fileID: 637661805}
+  - component: {fileID: 637661804}
+  - component: {fileID: 637661803}
+  m_Layer: 5
+  m_Name: Doki-dokey
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &637661802
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637661801}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1548916257}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -305, y: 180}
+  m_SizeDelta: {x: 177.3, y: 119.7}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &637661803
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637661801}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: -1795022101
+  m_SortingOrder: 3
+  m_TargetDisplay: 0
+--- !u!114 &637661804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637661801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 7caf8ae55896e724c93c1ebb215f6f1c, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &637661805
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637661801}
+  m_CullTransparentMesh: 0
 --- !u!1 &675821224
 GameObject:
   m_ObjectHideFlags: 0
@@ -839,7 +1052,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &675821225
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1085,7 +1298,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &997511035
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1401,6 +1614,7 @@ RectTransform:
   - {fileID: 1948274926}
   - {fileID: 552166000}
   - {fileID: 675821225}
+  - {fileID: 55981201}
   m_Father: {fileID: 679674372}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1600,8 +1814,8 @@ MonoBehaviour:
   m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0.4528302, g: 0.049127813, b: 0.22100094, a: 0.7254902}
-  m_EffectDistance: {x: 1, y: -1}
+  m_EffectColor: {r: 0.8396226, g: 0.31287822, b: 0.534937, a: 0.7254902}
+  m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
 --- !u!114 &1546586538
 MonoBehaviour:
@@ -1665,7 +1879,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1548916257
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1676,7 +1890,8 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 637661802}
   m_Father: {fileID: 137973656}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1705,7 +1920,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: fcbc8b999223c744db0c0092601d9507, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 25dfdc8e491bbb34fbc373db11525b89, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1774,34 +1989,71 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hostName: Monika
   messages:
-  - emotion: {fileID: 0}
+  - emotion: {fileID: 21300000, guid: fcbc8b999223c744db0c0092601d9507, type: 3}
     text: Hi there! Monika here.
-  - emotion: {fileID: 21300000, guid: 6fa2712c70cc17d44b917cc880dd0f6d, type: 3}
-    text: I'm from a game called "Doki Doki Literature Club" by Dan Salvato.
+  - emotion: {fileID: 21300000, guid: 4e251b5ea70fc6a44b3b81787a11d464, type: 3}
+    text: "I\u2019ll be hosting Mr. Cancio\u2019s Tower of Hanoi game for you."
+  - emotion: {fileID: 21300000, guid: 8214525be0f349b459953d22d43295c7, type: 3}
+    text: Hmm? Did you think this game was a visual novel at first?
   - emotion: {fileID: 21300000, guid: 91b431ffea6533648b7074559d9a277d, type: 3}
-    text: It's a free-to-play visual novel game where you can have fun with me and
-      my adorable club mates.
-  - emotion: {fileID: 21300000, guid: ec57912f3739cfd418c0bd0c5ce5c41a, type: 3}
-    text: My game inspired Cancio-san so much that he decided to use our club room
-      as a setting for his Tower of Hanoi game.
+    text: "Ahaha! That\u2019s because this entire game is themed around 'Doki Doki
+      Literature Club.'"
+  - emotion: {fileID: 21300000, guid: 25dfdc8e491bbb34fbc373db11525b89, type: 3}
+    text: It's a free-to-play visual novel game made by Dan Salvation in 2017.
+  - emotion: {fileID: 21300000, guid: 25dfdc8e491bbb34fbc373db11525b89, type: 3}
+    text: 'It features me and my adorable club mates: Natsuki, Sayori and Yuri.'
   - emotion: {fileID: 21300000, guid: 91b431ffea6533648b7074559d9a277d, type: 3}
-    text: And he let me become the host! I was so excited!
-  - emotion: {fileID: 21300000, guid: 6fa2712c70cc17d44b917cc880dd0f6d, type: 3}
-    text: "But I didn\u2019t want to hog all the fun  so I had my club mates join
-      in as well."
-  - emotion: {fileID: 21300000, guid: b7616227135c8214db841e503c38653c, type: 3}
-    text: "First things first though, I need to state Cancio-san\u2019s disclaimer
-      for this game."
-  - emotion: {fileID: 21300000, guid: ec57912f3739cfd418c0bd0c5ce5c41a, type: 3}
-    text: Only the programming parts of this game are Cancio-san's original work.
-      The rest, including the image sprites and audio tracks were open sourced and
-      belong to their respective creators. You can find a list of references to these
-      wonderful creators in the ReadMe.md file of this project.
+    text: Mr. Cancio is only borrowing us because he thought it could make his game
+      more fun and exciting!
+  - emotion: {fileID: 21300000, guid: 634654ae4067464409bcbf60dfd7b984, type: 3}
+    text: "That\u2019s right! Only the programming parts of this game are Mr. Cancio\u2019s
+      original work."
+  - emotion: {fileID: 21300000, guid: 634654ae4067464409bcbf60dfd7b984, type: 3}
+    text: 'The rest, including the image sprites and audio tracks were open sourced
+      and belong to their respective creators. '
   - emotion: {fileID: 21300000, guid: 91b431ffea6533648b7074559d9a277d, type: 3}
-    text: "With that out of the way, let\u2019s start with the game!"
+    text: You can find a list of references to these wonderful creators in the ReadMe.md
+      file of this project.
+  - emotion: {fileID: 21300000, guid: 4e251b5ea70fc6a44b3b81787a11d464, type: 3}
+    text: "Anyway, let\u2019s get back to the game."
+  - emotion: {fileID: 21300000, guid: 634654ae4067464409bcbf60dfd7b984, type: 3}
+    text: "If you\u2019ve never played Tower of Hanoi before, the rules are simple."
+  - emotion: {fileID: 21300000, guid: 634654ae4067464409bcbf60dfd7b984, type: 3}
+    text: You need move a stack of blocks from one tower to another.
+  - emotion: {fileID: 21300000, guid: 25dfdc8e491bbb34fbc373db11525b89, type: 3}
+    text: The key element of this game is that bigger blocks cannot be placed on top
+      of smaller blocks.
+  - emotion: {fileID: 21300000, guid: 634654ae4067464409bcbf60dfd7b984, type: 3}
+    text: "So you\u2019re going to have to move the blocks in such a way that they\u2019re
+      always arranged from biggest blocks at the bottom to smallest blocks at the
+      top."
+  - emotion: {fileID: 21300000, guid: 8214525be0f349b459953d22d43295c7, type: 3}
+    text: "Here in Mr. Cancio\u2019s rendition though, a few tweaks have been made."
+  - emotion: {fileID: 21300000, guid: 25dfdc8e491bbb34fbc373db11525b89, type: 3}
+    text: "First, you\u2019ll be stacking these Doki-dokeys instead of blocks."
+  - emotion: {fileID: 21300000, guid: fcbc8b999223c744db0c0092601d9507, type: 3}
+    text: Second, my club mates and I will be acting as the "towers" for you to stack
+      these Doki-dokeys on.
+  - emotion: {fileID: 21300000, guid: 8214525be0f349b459953d22d43295c7, type: 3}
+    text: I'll be the initial tower, and your goal will be to transfer all the Doki-dokeys
+      from me to the club mate of your choosing.
+  - emotion: {fileID: 21300000, guid: 91b431ffea6533648b7074559d9a277d, type: 3}
+    text: "Once you fill up one of my club mates\u2019 stack, you and that club mate
+      win!"
+  - emotion: {fileID: 21300000, guid: 634654ae4067464409bcbf60dfd7b984, type: 3}
+    text: I should also mention that my club mates can get really engaged in this
+      game, and might react differently depending on the moves you make.
+  - emotion: {fileID: 21300000, guid: cdcba19a6e07ec748a64f09efef92215, type: 3}
+    text: "But that shouldn\u2019t be too distracting for you\u2026 Hopefully\u2026"
+  - emotion: {fileID: 21300000, guid: 8214525be0f349b459953d22d43295c7, type: 3}
+    text: If things are still unclear, I can leave basic instructions for you, down
+      in this dialogue box here.
+  - emotion: {fileID: 21300000, guid: 8214525be0f349b459953d22d43295c7, type: 3}
+    text: I hope you enjoy!
   nameText: {fileID: 1546586538}
   dialogueText: {fileID: 2029308216}
   hostImage: {fileID: 1548916258}
+  dokiDokey: {fileID: 637661801}
 --- !u!1 &1593999242
 GameObject:
   m_ObjectHideFlags: 0
@@ -1934,10 +2186,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e59041543da1a594d83995d26936bd15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heightToWin: 5
   towerBindedTo: {fileID: 3340404522615276820}
   bestGirlSprite: {fileID: 21300000, guid: 6c0a324c659856e489f42f7d1c98cc50, type: 3}
-  bestGirlRemark: Good. You picked me. But don't get the wrong idea, okay? It's not
-    like I wanted you to pick me...
+  bestGirlRemark: Thank god, you picked me. But don't get the wrong idea, okay? It's
+    not like I wanted you to pick me...
   bestGirlName: Natsuki
 --- !u!1 &1610624169
 GameObject:
@@ -2232,10 +2485,10 @@ RectTransform:
   m_Father: {fileID: 997511035}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -297.22772}
-  m_SizeDelta: {x: 256.00003, y: 594.45544}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1944471333
 MonoBehaviour:
@@ -2406,6 +2659,12 @@ MonoBehaviour:
   - {fileID: 1964076627}
   - {fileID: 1154205658827300966}
   gameArea: {fileID: 997511034}
+  eventBuses:
+  - {fileID: 3340404522615276826}
+  - {fileID: 1789945483266281176}
+  - {fileID: 1789945481671495506}
+  - {fileID: 1944471335}
+  blocksToWin: {fileID: 55981204}
   endingPanel: {fileID: 675821224}
 --- !u!114 &1948274928
 MonoBehaviour:
@@ -2861,8 +3120,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -3.3400269, y: -13.300034}
-  m_SizeDelta: {x: -36.3, y: 143}
+  m_AnchoredPosition: {x: 0, y: -16.800003}
+  m_SizeDelta: {x: -60, y: 146.8}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2029308216
 MonoBehaviour:
@@ -2889,18 +3148,19 @@ MonoBehaviour:
     m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 10
-    m_MaxSize: 20
+    m_MinSize: 12
+    m_MaxSize: 24
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 0
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Controls:\n\tLeft Click \u2013 drag and drop tower blocks\n\tMiddle Click
-    \u2013 add extra tower blocks\n\tRight Click \u2013 remove biggest tower blocks\nObjective:\n\tStack
-    as many tower blocks on the girl of your choice to make her happy. \n\tBigger
-    blocks CANNOT be placed on top of smaller blocks. "
+  m_Text: "Controls:\r\n        Left Click \u2013 drag and drop keys to other girls\r\n
+    \       Middle Click \u2013 add extra keys to Monika\r\n        Right Click \u2013
+    reduce the number of keys in game area\r\nObjective:\r\n        Stack as many
+    keys on the girl of your choice to make her happy. \r\n        Bigger keys CANNOT
+    be placed on top of smaller keys. "
 --- !u!222 &2029308217
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3183,6 +3443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e59041543da1a594d83995d26936bd15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heightToWin: 5
   towerBindedTo: {fileID: 1789945481671495500}
   bestGirlSprite: {fileID: 21300000, guid: f1b673cf26a3b84489b86b78a84dc628, type: 3}
   bestGirlRemark: I... I'm truly honored... I've never had anyone think of me as someone
@@ -3320,6 +3581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e59041543da1a594d83995d26936bd15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heightToWin: 5
   towerBindedTo: {fileID: 1789945483266281170}
   bestGirlSprite: {fileID: 21300000, guid: 5e3ffb26479e4d245af29c6ef0b1c678, type: 3}
   bestGirlRemark: YAHOO! I'm so glad you picked me! I'm sooo excited! We're gonna
@@ -3468,10 +3730,10 @@ RectTransform:
   m_Father: {fileID: 997511035}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 768.0001, y: -297.22772}
-  m_SizeDelta: {x: 256.00003, y: 594.45544}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!224 &6402938369853916126
 RectTransform:
@@ -3487,10 +3749,10 @@ RectTransform:
   m_Father: {fileID: 997511035}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 512.00006, y: -297.22772}
-  m_SizeDelta: {x: 256.00003, y: 594.45544}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &6633246996821085336
 MonoBehaviour:
@@ -3603,10 +3865,10 @@ RectTransform:
   m_Father: {fileID: 997511035}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 256.00003, y: -297.22772}
-  m_SizeDelta: {x: 256.00003, y: 594.45544}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &8105198114968236233
 MonoBehaviour:

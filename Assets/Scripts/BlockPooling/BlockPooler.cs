@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class BlockPooler : MonoBehaviour {
 
@@ -16,7 +17,8 @@ public class BlockPooler : MonoBehaviour {
 
     public Transform initialTower;
 
-    void OnEnable () {
+    void Start () {
+
         // instantiate block slots
         foreach (Transform tower in this.gameArea) {
             GameObject slot;
@@ -37,26 +39,25 @@ public class BlockPooler : MonoBehaviour {
             block.SetActive (false);
             this.pooledBlocks.Push (block);
         }
-    }
 
-    void Start () {
         // setup initial tower
         if (!this.initialTower) {
             initialTower = GameObject.FindWithTag ("InitialTower").transform;
         }
 
-        // add blocks to initial tower
-        ResetBlocksToInitialTower ();
-
         // subscribe chop and grow tower events to middle and right mouse clicks
         foreach (Transform tower in this.gameArea) {
             EventBus eventBus = tower.GetComponent<EventBus> ();
-            eventBus.MiddleClickEvent  += this.GrowTower;
+            eventBus.MiddleClickEvent += this.GrowTower;
             eventBus.RightClickEvent += this.ChopTower;
         }
+
+        // add blocks to initial tower
+        ResetBlocksToInitialTower ();
+
     }
 
-    public int GetBlocksInPlay() {
+    public int GetBlocksInPlay () {
         return this.maxTowerHeight - this.pooledBlocks.Count;
     }
 
@@ -74,7 +75,7 @@ public class BlockPooler : MonoBehaviour {
     }
 
     // chop the tower with the bigges tower block
-    public void ChopTower () {
+    public void ChopTower (Transform towerClicked) {
         if (this.pooledBlocks.Count >= maxTowerHeight) {
             Debug.Log ("Block pool is full! What are you trying to chop");
         }
@@ -88,6 +89,14 @@ public class BlockPooler : MonoBehaviour {
             block.SetParent (this.transform);
             block.gameObject.SetActive (false);
             this.pooledBlocks.Push (block.gameObject);
+            this.EmitTowerChopEvent(towerToChop);
+        }
+    }
+
+    public Action<Transform> TowerChopEvent;
+    void EmitTowerChopEvent(Transform towerChopped) {
+        if(this.TowerChopEvent != null) {
+            this.TowerChopEvent(towerChopped);
         }
     }
 
@@ -103,14 +112,23 @@ public class BlockPooler : MonoBehaviour {
             // grow tower stack
             initialTower.GetComponent<TowerStack> ().GrowTowerFromBelow (block.transform);
         }
+        this.EmitTowerGrowEvent(initialTower);
     }
+
+    public Action<Transform> TowerGrowEvent;
+    void EmitTowerGrowEvent(Transform towerGrown) {
+        if(this.TowerGrowEvent != null) {
+            this.TowerGrowEvent(towerGrown);
+        }
+    }
+
 
     // reset all blocks of the tower back to initial game state
     // called by controller upon game reset
     public void ResetBlocksToInitialTower () {
         // return all blocks back to pool
         while (this.pooledBlocks.Count < maxTowerHeight) {
-            this.ChopTower ();
+            this.ChopTower (null);
         }
         // add initial blocks to intial tower's stack
         for (int i = 0; i < initialBlockCount; i++) {

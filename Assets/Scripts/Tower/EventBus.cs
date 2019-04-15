@@ -43,10 +43,10 @@ public class EventBus : MonoBehaviour {
     }
 
 
-    public Action RightClickEvent;
-    public void EmitRightClickEvent () {
+    public Action<Transform> RightClickEvent;
+    public void EmitRightClickEvent (Transform towerClicked) {
         if (this.RightClickEvent != null) {
-            this.RightClickEvent ();
+            this.RightClickEvent (towerClicked);
         }
     }
 

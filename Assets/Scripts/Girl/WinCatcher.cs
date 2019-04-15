@@ -1,11 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class WinCatcher : MonoBehaviour {
 
-    private int heightToWin = GameConstants.heightToWin;
+    public int heightToWin = GameConstants.defaultHeightToWin;
 
     public GameObject towerBindedTo;
     private EventBus eventBus;
@@ -22,11 +22,11 @@ public class WinCatcher : MonoBehaviour {
         this.towerStack = this.towerBindedTo.GetComponent<TowerStack> ();
 
         // subscribe best girl checking to whenever tower gains a new block
-        this.eventBus.TopBlockGainEvent += CheckIfBestGirl;
+        this.eventBus.TopBlockGainEvent += this.CheckIfBestGirl;
     }
 
     // checks if towerBindedTo's stack has reached height to win and emits win event if true
-    void CheckIfBestGirl (Transform tower) {
+    public void CheckIfBestGirl (Transform tower) {
         if (this.towerStack.GetTowerHeight () >= heightToWin) {
             // emit win event for game controller to react to
             this.EmitHeightToWinReachedEvent ();
@@ -40,4 +40,5 @@ public class WinCatcher : MonoBehaviour {
             this.HeightToWinReachedEvent (this);
         }
     }
+
 }

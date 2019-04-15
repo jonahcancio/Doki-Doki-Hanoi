@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameConstants : MonoBehaviour {
-    public static int maxTowerHeight = 7;
+    public static int maxTowerHeight = 8;
 
     public static int initialBlockCount = 5;
-    public static int heightToWin = 5;
+    public static int defaultHeightToWin = 5;
 
     public static string defaultHeader = "Instructions";
     public static string defaultInstructions =
         @"Controls:
-        Left Click – drag and drop tower blocks to other girls
-        Middle Click – add extra tower blocks to Monika
-        Right Click – reduce the number of tower blocks in game area
+        Left Click – drag and drop keys to other girls
+        Middle Click – add extra keys to Monika
+        Right Click – reduce the number of keys in game area
 Objective:
-        Stack as many tower blocks on the girl of your choice to make her happy. 
-        Bigger blocks CANNOT be placed on top of smaller blocks. 
+        Stack as many keys on the girl of your choice to make her happy. 
+        Bigger keys CANNOT be placed on top of smaller keys. 
     ";
 }
