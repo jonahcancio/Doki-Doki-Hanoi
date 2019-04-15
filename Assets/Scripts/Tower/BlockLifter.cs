@@ -22,17 +22,19 @@ public class BlockLifter : MonoBehaviour {
         this.eventBus.LeftReleaseEvent += this.ResetTopBlockPosition;
     }
 
+    // used to move topblock to mouse position as it drags it
     public void MoveTopBlockToMouse (Vector2 mousePosition) {
         Transform topBlock = this.towerStack.GetTopBlock();
         if (topBlock) {
-            MouseDragTrigger.topBlockBeingDragged = topBlock;
+            MouseActionTrigger.topBlockBeingDragged = topBlock;
+            // convert mouse position to world coordinates
             Vector2 world = this.mainCamera.ScreenToWorldPoint (mousePosition);
+            // move topblock's position to mouse's world coordinate's position at the same z-axis as main canvas
             topBlock.position = new Vector3 (world.x, world.y, mainCanvas.planeDistance);            
-        } else{
-            // Debug.Log("No top block to move to mouse");
         }
     }
 
+    // used to release top block back to its original position when mouse releases
     public void ResetTopBlockPosition(Transform fromTower) {
         Transform topBlock = this.towerStack.GetTopBlock();
         if (topBlock) {

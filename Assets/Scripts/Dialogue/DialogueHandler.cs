@@ -133,7 +133,8 @@ public class DialogueHandler : MonoBehaviour, IPointerClickHandler {
                     this.DisplayNextMessage ();
                 }
             }
-        } else if (eventData.button == PointerEventData.InputButton.Right) {
+        } // detect right click for skipping entire dialogue
+        else if (eventData.button == PointerEventData.InputButton.Right) {
             if (this.isDialoguing) {
                 this.EndDialogue ();
             } 

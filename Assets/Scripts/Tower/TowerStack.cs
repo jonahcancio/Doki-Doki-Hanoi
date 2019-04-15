@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TowerStack : MonoBehaviour {
 
-    // FIELDS    
     private int maxTowerHeight = GameConstants.maxTowerHeight;
     public int slotIndex;
 
@@ -45,6 +44,7 @@ public class TowerStack : MonoBehaviour {
         return null;
     }
 
+    // returns the slot of the top block
     public Transform GetTopBlockSlot () {
         if (this.slotIndex < maxTowerHeight - 1) {
             return this.transform.GetChild (this.slotIndex + 1);
@@ -52,6 +52,7 @@ public class TowerStack : MonoBehaviour {
         return null;
     }
 
+    // returns the current available slot
     public Transform GetTopSlot () {
         return this.transform.GetChild (this.slotIndex);
     }
@@ -80,7 +81,6 @@ public class TowerStack : MonoBehaviour {
         return blockNum > newBlockNum;
     }
 
-    // BASIC METHODS-- FUNCTIONS THAT FREQUENTLY USED MORE ADVANCED FUNCTIONS
     // pushes newBlock parameter to stack and updates slot index accordingly
     public void PushTopBlock (Transform newBlock) {
         if (newBlock) {
@@ -103,7 +103,6 @@ public class TowerStack : MonoBehaviour {
         return null;
     }
 
-    // ADVANCED METHODS -- FUNCTIONS THAT PERFORM MULTIPLE TASKS USING COMPUTED PROPERTIES AND BASIC METHODS
     // examines top block from towerFrom parameter and transfers it to this tower's stack if move is valid
     public void AttemptBlockTransferFrom (Transform towerFrom) {
         if (towerFrom) {

@@ -9,31 +9,35 @@ public class GameController : MonoBehaviour {
         Intro,
         Game,
         Ending
-    };
-    [SerializeField]
-    private GamePhase gamePhase;
+        };
+        [SerializeField]
+        private GamePhase gamePhase;
 
-    // fields used by the intro phase
-    public GameObject introBackground;
-    public GameObject hostGirl;
-    public DialogueHandler dialogHandler;
+        // fields used by the intro phase
+        public GameObject introBackground;
+        public GameObject hostGirl;
+        public DialogueHandler dialogHandler;
 
-    // fields used by the game phase
-    public GameObject blockPooler;
-    public GameObject[] bestGirls;
-    public GameObject gameArea;
-    public EventBus[] eventBuses;
-    public Text blocksToWin;
+        // fields used by the game phase
+        public GameObject blockPooler;
+        public GameObject[] bestGirls;
+        public GameObject gameArea;
+        public EventBus[] eventBuses;
+        public Text blocksToWin;
 
-    // fields used by the ending phase
-    public GameObject endingPanel;
+        // fields used by the ending phase
+        public GameObject endingPanel;
 
-    void OnEnable() {
-        // start game phase at intro
+        void OnEnable () {
         if (this.gamePhase == GamePhase.Intro) {
-            this.TransitionToIntro ();
+        // start game phase at intro
+        this.TransitionToIntro ();
         } else if (this.gamePhase == GamePhase.Game) {
-            this.TransitionToGame();
+        // start game phase at game
+        this.TransitionToGame ();
+        } else {
+        // start game pgase at ending
+        this.TransitionToEnding (null);
         }
     }
 
@@ -47,7 +51,7 @@ public class GameController : MonoBehaviour {
             girlWC.HeightToWinReachedEvent += this.TransitionToEnding;
         }
 
-        BlockPooler blockPooler = this.blockPooler.GetComponent<BlockPooler>();
+        BlockPooler blockPooler = this.blockPooler.GetComponent<BlockPooler> ();
         blockPooler.TowerGrowEvent += this.RefreshWinObjective;
         blockPooler.TowerChopEvent += this.RefreshWinObjective;
 
@@ -68,18 +72,22 @@ public class GameController : MonoBehaviour {
         this.introBackground.SetActive (false);
         this.hostGirl.SetActive (false);
         this.blockPooler.SetActive (true);
-        this.gameArea.SetActive (true);        
+        this.gameArea.SetActive (true);
     }
 
     // used to transition from game to ending
+    // takes a WinCatcher parameter from the best girl who won
     public void TransitionToEnding (WinCatcher bestGirl) {
         this.gamePhase = GamePhase.Ending;
         this.endingPanel.SetActive (true);
         this.gameArea.SetActive (false);
-        EndingHandler endingHandler = this.endingPanel.GetComponent<EndingHandler> ();
-        endingHandler.SetBestGirlName (bestGirl.bestGirlName);
-        endingHandler.SetBestGirlRemark (bestGirl.bestGirlRemark);
-        endingHandler.SetBestGirlSprite (bestGirl.bestGirlSprite);
+        // set best girl parameters based on who won
+        if (bestGirl != null) {
+            EndingHandler endingHandler = this.endingPanel.GetComponent<EndingHandler> ();
+            endingHandler.SetBestGirlName (bestGirl.bestGirlName);
+            endingHandler.SetBestGirlRemark (bestGirl.bestGirlRemark);
+            endingHandler.SetBestGirlSprite (bestGirl.bestGirlSprite);
+        }
     }
 
     // used to transition from ending back to game
@@ -96,13 +104,15 @@ public class GameController : MonoBehaviour {
         this.gamePhase = GamePhase.Game;
     }
 
+    // used to refresh number of keys needed to win the game
+    // called whenever keys are added or removed from the block pooler
     public void RefreshWinObjective (Transform towerClicked) {
         int blocksInPlay = this.blockPooler.GetComponent<BlockPooler> ().GetBlocksInPlay ();
         int winObjective = Mathf.Clamp (blocksInPlay, 5, 8);
         foreach (GameObject girl in bestGirls) {
             WinCatcher girlWC = girl.GetComponent<WinCatcher> ();
             girlWC.heightToWin = winObjective;
-            girlWC.CheckIfBestGirl(null);
+            girlWC.CheckIfBestGirl (null);
         }
         blocksToWin.text = "Keys Needed To Win: " + winObjective;
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MouseDragTrigger : MonoBehaviour,
+public class MouseActionTrigger : MonoBehaviour,
     IPointerDownHandler, IDragHandler, IDropHandler, IPointerUpHandler,
     IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler {
 

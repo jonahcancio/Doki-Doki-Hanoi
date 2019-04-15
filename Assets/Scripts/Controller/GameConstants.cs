@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameConstants : MonoBehaviour {
+    // maximum number of blocks the game can support
     public static int maxTowerHeight = 8;
 
+    // initial number of blocks to start initialTower with
     public static int initialBlockCount = 5;
+    // initial height needed to win
     public static int defaultHeightToWin = 5;
 
+    // default dialogue for instructions in game
     public static string defaultHeader = "Instructions";
     public static string defaultInstructions =
         @"Controls:

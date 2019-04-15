@@ -27,6 +27,7 @@ public class Block : MonoBehaviour {
         this.originalLocalPosition = this.transform.localPosition;
     }
 
+    // resets block position back to center of slot
     public void ResetPosition () {
         this.transform.localPosition = this.originalLocalPosition;
     }
@@ -42,11 +43,13 @@ public class Block : MonoBehaviour {
         rectTransform.sizeDelta = sizeDelta;
     }
 
+    // set block num and size afterwards
     public void SetBlockNum (int blockNum) {
         this.blockNum = blockNum;
         this.SetSizeToBlockNum ();
     }
 
+    // set block color
     public void SetColor (Color color) {
         this.image.color = color;
     }

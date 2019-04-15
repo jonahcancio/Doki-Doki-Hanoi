@@ -6,7 +6,9 @@ public class ShadowPooler : MonoBehaviour {
 
     public GameObject blockPrefab;
 
+    // shadow used to highlight where block was from
     private GameObject fromShadow;
+    // shadow used to highlight where block will drop
     private GameObject toShadow;
     private Transform gameArea;
 
@@ -36,8 +38,9 @@ public class ShadowPooler : MonoBehaviour {
         }
     }
 
+    // show shadow of where block will drop on toTower
     void ShowToShadow (Transform toTower) {
-        Transform fromTower = MouseDragTrigger.towerBeingDragged;
+        Transform fromTower = MouseActionTrigger.towerBeingDragged;
         if (toTower != fromTower) {
             Transform fromBlock = fromTower.GetComponent<TowerStack> ().GetTopBlock ();
             if (fromBlock) {
@@ -65,12 +68,14 @@ public class ShadowPooler : MonoBehaviour {
         }
     }
 
-    void HideToShadow (Transform fromTower) {
+    // hide shadow by setting it to inactive
+    void HideToShadow (Transform toTower) {
         this.toShadow.transform.SetParent (this.transform);
         this.toShadow.GetComponent<Block> ().ResetPosition ();
         this.toShadow.SetActive (false);
     }
 
+    // show shadow of where block came from on fromTower
     void ShowFromShadow (Transform fromTower) {
         // find toTower slot and place toShadow block inside it
         TowerStack fromTowerStack = fromTower.GetComponent<TowerStack> ();
@@ -85,13 +90,14 @@ public class ShadowPooler : MonoBehaviour {
             // Adjust shadow's size and color
             Block fromShadowData = this.fromShadow.GetComponent<Block> ();
             fromShadowData.ResetPosition ();
-            fromShadowData.SetColor (new Color (0f, 0f, 0f, 0.6f)); //gray shadow
+            fromShadowData.SetColor (new Color (0f, 0f, 0f, 0.6f)); //black shadow
             int blockNum = fromBlock.GetComponent<Block> ().blockNum;
             fromShadowData.SetBlockNum (blockNum);
         }
 
     }
 
+    // hide shadow by setting it to inactive
     void HideFromShadow (Transform fromShadow) {
         this.fromShadow.transform.SetParent (this.transform);
         this.fromShadow.GetComponent<Block> ().ResetPosition ();

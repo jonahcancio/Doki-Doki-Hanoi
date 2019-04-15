@@ -57,6 +57,7 @@ public class BlockPooler : MonoBehaviour {
 
     }
 
+    // returns the number of blocks currently in game area
     public int GetBlocksInPlay () {
         return this.maxTowerHeight - this.pooledBlocks.Count;
     }
