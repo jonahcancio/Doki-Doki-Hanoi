@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/_HanoiScene.unity
+    guid: 5801d736288f28949a2dac2f76b92bf2
   m_configObjects: {}
